@@ -134,6 +134,9 @@ $(document).ready(function() {
                                     return "country" + d.properties.iso_a3;
                                 })
                                 .attr("class", "country")
+                                .attr("style", function(d, i) {
+                                    return getCountryStyleString(d, i);
+                                })
                             //      .attr("stroke-width", 10)
                             //      .attr("stroke", "#ff0000")
 

@@ -12,8 +12,7 @@ body {
 svg rect {
     fill: #85C1E9;   /* map background colour */
 }
-.country{
-    fill: #C0E985;   /* country colour */
+.country{ 
     stroke: #2A2C39; /* country border colour */
     stroke-width: 1; /* country border width */
 }
@@ -22,7 +21,7 @@ svg rect {
     stroke-width: 1; /* country border width */
 }
 .country-on{
-    fill: #4B5358;   /* highlight colour for selected country */
+    fill: #4B5358 !important;   /* highlight colour for selected country */
 }
 .countryLabel{
     display: none;   /* hide all country labels by default */
