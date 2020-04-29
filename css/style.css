@@ -9,11 +9,40 @@ body {
     width: 100vw;
     height: 100vh;
 }
+#information-holder{
+    height: 100vh;
+    width: 25vw;
+    background-color:rgba(105,105,105,0.85);
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+#countryName-holder{
+    padding:5%;
+    height: 12vh;
+    text-align: center;
+}
+#statistics-holder{
+    margin:2.5%;
+    padding:2.5%;
+    color: white;
+    border-top:1px solid rgb(220,220,220);
+    text-align: justify;
+}
+.country-name{
+    position: relative;
+    top: 24%;
+    color: white;
+    font-size: larger;
+    font-weight: 600;
+}
+
 svg rect {
-    fill: #85C1E9;   /* map background colour */
+    fill: rgb(238, 240, 241);   /* map background colour */
 }
 .country{ 
-    stroke: #2A2C39; /* country border colour */
+    stroke: rgb(107, 161, 206); /* country border colour */
     stroke-width: 1; /* country border width */
 }
 .country:hover{

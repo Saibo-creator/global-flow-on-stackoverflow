@@ -8,12 +8,13 @@ h = 1250;
 var minZoom;
 var maxZoom;
 
+infoWidth = $('body').width()
 // DEFINE FUNCTIONS/OBJECTS
 // Define map projection
 var projection = d3.geoEquirectangular()
                    .center([0, 15]) // set centre to further North as we are cropping more off bottom of map
                    .scale([w / (2 * Math.PI)]) // scale to fit group width
-                   .translate([w / 2, h / 2]); // ensure centred in group
+                   .translate([(w- 0.64*infoWidth) / 2, h / 2]); // ensure centred in group
 
 // Define map path
 var path = d3.geoPath()
@@ -52,47 +53,6 @@ function initiateZoom() {
     // change zoom transform to min zoom and centre offsets
     svg.call(zoom.transform, d3.zoomIdentity.translate(midX, midY).scale(minZoom));
 }
-
-// zoom to show a bounding box, with optional additional padding as percentage of box size
-function boxZoom(box, centroid, paddingPerc) {
-    minXY = box[0];
-    maxXY = box[1];
-    // find size of map area defined
-    zoomWidth = Math.abs(minXY[0] - maxXY[0]);
-    zoomHeight = Math.abs(minXY[1] - maxXY[1]);
-    // find midpoint of map area defined
-    zoomMidX = centroid[0];
-    zoomMidY = centroid[1];
-    // increase map area to include padding
-    zoomWidth = zoomWidth * (1 + paddingPerc / 100);
-    zoomHeight = zoomHeight * (1 + paddingPerc / 100);
-    // find scale required for area to fill svg
-    maxXscale = $("svg").width() / zoomWidth;
-    maxYscale = $("svg").height() / zoomHeight;
-    zoomScale = Math.min(maxXscale, maxYscale);
-    // handle some edge cases
-    // limit to max zoom (handles tiny countries)
-    zoomScale = Math.min(zoomScale, maxZoom);
-    // limit to min zoom (handles large countries and countries that span the date line)
-    zoomScale = Math.max(zoomScale, minZoom);
-    // Find screen pixel equivalent once scaled
-    offsetX = zoomScale * zoomMidX;
-    offsetY = zoomScale * zoomMidY;
-    // Find offset to centre, making sure no gap at left or top of holder
-    dleft = Math.min(0, $("svg").width() / 2 - offsetX);
-    dtop = Math.min(0, $("svg").height() / 2 - offsetY);
-    // Make sure no gap at bottom or right of holder
-    dleft = Math.max($("svg").width() - w * zoomScale, dleft);
-    dtop = Math.max($("svg").height() - h * zoomScale, dtop);
-    // set zoom
-    svg.transition()
-       .duration(500)
-       .call(zoom.transform,
-            d3.zoomIdentity.translate(dleft, dtop).scale(zoomScale));
-}
-
-
-
 
 // on window resize
 $(window).resize(function() {
@@ -151,7 +111,7 @@ $(document).ready(function() {
                                 .on("click", function(d, i) {
                                     d3.selectAll(".country").classed("country-on", false);
                                     d3.select(this).classed("country-on", true);
-                                    // boxZoom(path.bounds(d), path.centroid(d), 20);
+                                    showStat(d.properties.name);
                                 });
         
         // Add a label group to each feature/country. This will contain the country name and a background rectangle
@@ -165,9 +125,16 @@ $(document).ready(function() {
                                         return "countryLabel" + d.properties.iso_a3;
                                     })
                                     .attr("transform", function(d) {
-                                        return (
-                                        "translate(" + path.centroid(d)[0] + "," + path.centroid(d)[1] + ")"
-                                        );
+                                        if(d.properties.iso_a3 == "USA"){
+                                            return (
+                                                "translate(" + (path.centroid(d)[0] + 100) + "," + (path.centroid(d)[1] +50) + ")"
+                                                );
+                                        }
+                                        else{
+                                            return (
+                                                "translate(" + path.centroid(d)[0] + "," + path.centroid(d)[1] + ")"
+                                                );
+                                        }
                                     })
                                     // add mouseover functionality to the label
                                     .on("mouseover", function(d, i) {
@@ -180,7 +147,7 @@ $(document).ready(function() {
                                     .on("click", function(d, i) {
                                         d3.selectAll(".country").classed("country-on", false);
                                         d3.select("#country" + d.properties.iso_a3).classed("country-on", true);
-                                        // boxZoom(path.bounds(d), path.centroid(d), 20);
+                                        showStat(d.properties.name);
                                     });
         // add the text to the label group showing country name
         countryLabels.append("text")
