@@ -58,7 +58,7 @@ function initiateZoom() {
 $(window).resize(function() {
     // Resize SVG
     svg.attr("width", $("#map-holder").width())
-    .attr("height", $("#map-holder").height());
+       .attr("height", $("#map-holder").height());
     initiateZoom();
 });
 
@@ -71,8 +71,17 @@ var svg = d3.select("#map-holder")
             // add zoom functionality
             .call(zoom);
 
+var top50 = ['USA','IND','GBR','DEU','CHN','CAN','BRA','FRA','RUS','AUS','PAK','POL','NLD','ESP','IDN','ITA','TUR','PHL','VNM','BGD','IRN',
+             'UKR','SWE','EGY','MEX','ISR','ZAF','KOR','ROU','NGA','BEL','CHE','ARG','SGP','LKA','JPN','MYS','PRT','DNK','IRL','AUT',
+             'COL','GRC','NZL','MAR','NOR','NPL','THA','CZE','HUN']
 
 $(document).ready(function() {
+    //get country data
+    var countryData;
+    $.getJSON("data/country_data.json", function(data) {
+        countryData = data;
+      })
+
     // get map data
     d3.json("data/world.geo.json", function(json) {
         //Bind data and create one path per GeoJSON feature
@@ -111,7 +120,13 @@ $(document).ready(function() {
                                 .on("click", function(d, i) {
                                     d3.selectAll(".country").classed("country-on", false);
                                     d3.select(this).classed("country-on", true);
-                                    showStat(d.properties.name);
+                                    if(d.properties.iso_a3 in countryData){
+                                        let cData = countryData[d.properties.iso_a3]
+                                        showStat(d,cData);
+                                    }
+                                    else{
+                                        showStat(d,null);
+                                    }
                                 });
         
         // Add a label group to each feature/country. This will contain the country name and a background rectangle
@@ -147,7 +162,14 @@ $(document).ready(function() {
                                     .on("click", function(d, i) {
                                         d3.selectAll(".country").classed("country-on", false);
                                         d3.select("#country" + d.properties.iso_a3).classed("country-on", true);
-                                        showStat(d.properties.name);
+                                        if(d.properties.iso_a3 in countryData){
+                                            let cData = countryData[d.properties.iso_a3]
+                                            showStat(d,cData);
+                                        }
+                                        else{
+                                            showStat(d,null);
+                                        }
+                                        
                                     });
         // add the text to the label group showing country name
         countryLabels.append("text")
