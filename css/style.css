@@ -5,33 +5,38 @@ body {
     font-weight: 200;
     font-size: 17px;
 }
+
 #map-holder {
     width: 100vw;
     height: 100vh;
     background-color: #2A2C39;
 }
-#information-holder{
+
+#information-holder {
     height: 100vh;
     width: 25vw;
-    background-color:rgba(105,105,105,0.85);
+    background-color: rgba(105, 105, 105, 0.85);
     position: absolute;
     top: 0;
     right: 0;
     z-index: 1;
 }
-#countryName-holder{
-    padding:5%;
+
+#countryName-holder {
+    padding: 5%;
     height: 12vh;
     text-align: center;
 }
-#statistics-holder{
-    margin:2.5%;
-    padding:2.5%;
+
+#statistics-holder {
+    margin: 2.5%;
+    padding: 2.5%;
     color: white;
-    border-top:1px solid rgb(220,220,220);
+    border-top: 1px solid rgb(220, 220, 220);
     text-align: justify;
 }
-.country-name{
+
+.country-name {
     position: relative;
     top: 24%;
     color: white;
@@ -40,35 +45,56 @@ body {
 }
 
 svg rect {
-    fill: #2A2C39;   /* map background colour */
-}
-.country{ 
-    stroke: rgb(107, 161, 206); /* country border colour */
-    stroke-width: 1; /* country border width */
-}
-.country:hover{
-    stroke: #fff; /* country border colour */
-    stroke-width: 1; /* country border width */
-}
-.country-on{
-    fill: #4B5358 !important;   /* highlight colour for selected country */
-}
-.countryLabel{
-    display: none;   /* hide all country labels by default */
-}
-.countryName{
-    fill: #FFFAFF;   /* country label text colour */
-}
-.countryNameSourceFlow{
-    fill: "green";   /* country label text colour */
+    fill: #2A2C39;
+    /* map background colour */
 }
 
-.countryLabelBg{
-    fill: #30BCED;   /* country label background colour */
+.country {
+    stroke: rgb(107, 161, 206);
+    /* country border colour */
+    stroke-width: 1;
+    /* country border width */
 }
 
-.circle{color:#9966CC;fill:#9966CC;
+.country:hover {
+    stroke: #fff;
+    /* country border colour */
+    stroke-width: 1;
+    /* country border width */
+}
+
+.country-on {
+    fill: #4B5358 !important;
+    /* highlight colour for selected country */
+}
+
+.countryLabel {
+    display: none;
+    /* hide all country labels by default */
+}
+
+.countryName {
+    fill: #FFFAFF;
+    /* country label text colour */
+}
+
+.countryNameSourceFlow {
+    fill: "green";
+    /* country label text colour */
+}
+
+.countryLabelBg {
+    fill: #30BCED;
+    /* country label background colour */
+}
+
+.circle {
+    color: #9966CC;
+    fill: #9966CC;
 
 }
 
-#arrow{color:#9966CC;fill:#9966CC;}
+#arrow {
+    color: #9966CC;
+    fill: #9966CC;
+}

@@ -105,14 +105,14 @@ var svg = d3.select("#map-holder")
     // set to the same size as the "map-holder" div
     .attr("width", $("#map-holder").width())
     .attr("height", $("#map-holder").height())
-    .attr("id","svg")
+    .attr("id", "svg")
     // add zoom functionality
     .call(zoom);
 
 var top50 = ['USA', 'IND', 'GBR', 'DEU', 'CHN', 'CAN', 'BRA', 'FRA', 'RUS', 'AUS', 'PAK', 'POL', 'NLD', 'ESP', 'IDN', 'ITA', 'TUR', 'PHL', 'VNM', 'BGD', 'IRN',
     'UKR', 'SWE', 'EGY', 'MEX', 'ISR', 'ZAF', 'KOR', 'ROU', 'NGA', 'BEL', 'CHE', 'ARG', 'SGP', 'LKA', 'JPN', 'MYS', 'PRT', 'DNK', 'IRL', 'AUT',
     'COL', 'GRC', 'NZL', 'MAR', 'NOR', 'NPL', 'THA', 'CZE', 'HUN'
-]
+];
 var countriesGroup = svg.append("g").attr("id", "countriesGroup");
 
 var flow = svg.append('g')
@@ -127,8 +127,8 @@ var barChart = svg.append("g")
 countryLabelGroup = svg.append("g").attr("id", "countryLabelGroup");
 
 //add graphic objects defs
-  var defs = svg.append('defs')
-  .attr("id","defs");
+var defs = svg.append('defs')
+    .attr("id", "defs");
 
 $(document).ready(function() {
     //get country data
@@ -192,7 +192,11 @@ $(document).ready(function() {
                 }
                 //add flow effect
                 flow.selectAll("line").remove();
-                createFlow(d.properties.iso_a3, flows);
+                circle.selectAll("circle").remove();
+                var iso=d.properties.iso_a3;
+
+                createFlow(iso, flows);
+                appendFlowStat(d.properties.iso_a3,flows);
             });
 
 
