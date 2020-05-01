@@ -42,7 +42,7 @@ function getTextBox(selection) {
 // Function that calculates zoom/pan limits and sets zoom to default value 
 function initiateZoom() {
     // Define a "minzoom" whereby the "Countries" is as small possible without leaving white space at top/bottom or sides
-    minZoom = Math.max($("#map-holder").width() / w, $("#map-holder").height() / h);
+    minZoom = 0.7*Math.max($("#map-holder").width() / w, $("#map-holder").height() / h);
     // set max zoom to a suitable factor of this value
     maxZoom = 20 * minZoom;
     // set extent of zoom to chosen values
@@ -53,7 +53,7 @@ function initiateZoom() {
             [w, h]
         ]);
     // define X and Y offset for centre of map to be shown in centre of holder
-    midX = ($("#map-holder").width() - minZoom * w) / 2;
+    midX = ($("#map-holder").width()*1.15 - minZoom * w) / 2;
     midY = ($("#map-holder").height() - minZoom * h) / 2;
     // change zoom transform to min zoom and centre offsets
     svg.call(zoom.transform, d3.zoomIdentity.translate(midX, midY).scale(minZoom));
