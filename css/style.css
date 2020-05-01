@@ -66,3 +66,9 @@ svg rect {
 .countryLabelBg{
     fill: #30BCED;   /* country label background colour */
 }
+
+.circle{color:#9966CC;fill:#9966CC;
+
+}
+
+#arrow{color:#9966CC;fill:#9966CC;}
