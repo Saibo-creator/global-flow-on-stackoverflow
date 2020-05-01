@@ -26,6 +26,7 @@ function zoomed() {
     countriesGroup.attr("transform", "translate(" + [t.x, t.y] + ")scale(" + t.k + ")");
     countryLabelGroup.attr("transform", "translate(" + [t.x, t.y] + ")scale(" + t.k + ")");
     flow.attr("transform", "translate(" + [t.x, t.y] + ")scale(" + t.k + ")");
+    circle.attr("transform", "translate(" + [t.x, t.y] + ")scale(" + t.k + ")");
 }
 
 // Define map zoom behaviour
@@ -42,7 +43,7 @@ function getTextBox(selection) {
 // Function that calculates zoom/pan limits and sets zoom to default value 
 function initiateZoom() {
     // Define a "minzoom" whereby the "Countries" is as small possible without leaving white space at top/bottom or sides
-    minZoom = 0.7*Math.max($("#map-holder").width() / w, $("#map-holder").height() / h);
+    minZoom = 0.7 * Math.max($("#map-holder").width() / w, $("#map-holder").height() / h);
     // set max zoom to a suitable factor of this value
     maxZoom = 20 * minZoom;
     // set extent of zoom to chosen values
@@ -53,7 +54,7 @@ function initiateZoom() {
             [w, h]
         ]);
     // define X and Y offset for centre of map to be shown in centre of holder
-    midX = ($("#map-holder").width()*1.15 - minZoom * w) / 2;
+    midX = ($("#map-holder").width() * 1.15 - minZoom * w) / 2;
     midY = ($("#map-holder").height() - minZoom * h) / 2;
     // change zoom transform to min zoom and centre offsets
     svg.call(zoom.transform, d3.zoomIdentity.translate(midX, midY).scale(minZoom));
@@ -89,61 +90,6 @@ function compareValues(key, order = 'asc') {
 }
 
 
-//function to create flow with animation
-function createFlow(iso, flows) {
-
-    console.log("flows=", flows);
-    flows = flows.filter(function(v) { return v.ans_owner_country == iso }).slice(0, 20);
-    flow.selectAll("line")
-        .data(flows)
-        // .filter(function(d) { return d.ans_owner_country == iso; })
-        // //shows only the biggest 20 flows
-        // .filter(function(d, i) { return i < 20; })
-        .enter()
-        .append("line")
-        .attr('class', 'line')
-        .attr("x1", d => projection([d.long_ques, d.lat_ques])[0])
-        .attr("y1", d => projection([d.long_ques, d.lat_ques])[1])
-        .attr("x2", d => projection([d.long_ques, d.lat_ques])[0])
-        .attr("y2", d => projection([d.long_ques, d.lat_ques])[1])
-        .attr("stroke-width", 1)
-        .attr("stroke", "pink");
-    //.attr("marker-end", "url(#arrow)");
-    //arrow def
-
-
-
-    flow.selectAll("line")
-        .data(flows)
-        .filter(function(d) { return d.ans_owner_country == iso; })
-        //shows only the biggest 20 flows
-        .filter(function(d, i) { return i < 20; })
-        .transition()
-        .duration(1000)
-        .attr("x1", d => projection([d.long_ques, d.lat_ques])[0])
-        .attr("y1", d => projection([d.long_ques, d.lat_ques])[1])
-        .attr("x2", d => projection([d.long_ans, d.lat_ans])[0])
-        .attr("y2", d => projection([d.long_ans, d.lat_ans])[1])
-        .attr("stroke-width", d => (
-            d.count / 4000 > 2 ? d.count / 4000 : 2))
-        // })(order === 'desc') ? (comparison * -1) : comparison
-        .attr("stroke", "pink");
-    //.attr("marker-end", "url(#arrow2)");
-    for (var i = 0; i < flows.length; i++) {
-        iso = flows[i].ques_owner_country;
-        d3.select("#countryLabel" + iso).style("display", "block");
-        if (iso!=flows[i].ans_owner_country) {
-            d3.select("#countryLabel" + iso).select('text').attr('class', 'countryNameSourceFlow');
-    }
-        }
-
-        
-
-
-
-
-}
-
 
 // on window resize
 $(window).resize(function() {
@@ -159,6 +105,7 @@ var svg = d3.select("#map-holder")
     // set to the same size as the "map-holder" div
     .attr("width", $("#map-holder").width())
     .attr("height", $("#map-holder").height())
+    .attr("id","svg")
     // add zoom functionality
     .call(zoom);
 
@@ -179,6 +126,9 @@ var barChart = svg.append("g")
 
 countryLabelGroup = svg.append("g").attr("id", "countryLabelGroup");
 
+//add graphic objects defs
+  var defs = svg.append('defs')
+  .attr("id","defs");
 
 $(document).ready(function() {
     //get country data
@@ -240,7 +190,7 @@ $(document).ready(function() {
                 } else {
                     showStat(d, null);
                 }
-                                //add flow effect
+                //add flow effect
                 flow.selectAll("line").remove();
                 createFlow(d.properties.iso_a3, flows);
             });
@@ -275,8 +225,8 @@ $(document).ready(function() {
                 d3.select(this).style("display", "block");
             })
             .on("mouseout", function(d, i) {
-                    d3.select(this).style("display", "none");
-                
+                d3.select(this).style("display", "none");
+
             })
             // add an onlcick action to zoom into clicked country
             .on("click", function(d, i) {
