@@ -8,7 +8,7 @@ h = 1250;
 var minZoom;
 var maxZoom;
 
-infoWidth = $('body').width()
+var infoWidth = $('body').width();
 // DEFINE FUNCTIONS/OBJECTS
 // Define map projection
 var projection = d3.geoEquirectangular()
