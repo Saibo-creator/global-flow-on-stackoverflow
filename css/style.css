@@ -29,10 +29,18 @@ body {
 }
 
 #statistics-holder {
-    margin: 2.5%;
+    /* margin: 2.5%; */
     padding: 2.5%;
     color: white;
     border-top: 1px solid rgb(220, 220, 220);
+    border-bottom: 1px solid rgb(220, 220, 220);
+    text-align: justify;
+}
+
+#progress-bar {
+    padding: 2.5%;
+    width: 20vw;
+    color: white;
     text-align: justify;
 }
 
