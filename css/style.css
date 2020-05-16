@@ -28,6 +28,7 @@ body {
     text-align: center;
 }
 
+
 #statistics-holder {
     /* margin: 2.5%; */
     padding: 2.5%;
@@ -44,12 +45,25 @@ body {
     text-align: justify;
 }
 
+
 .country-name {
     position: relative;
+    text-align: center;
     top: 24%;
     color: white;
     font-size: larger;
     font-weight: 600;
+}
+
+.hbar-title {
+    position: relative;
+    text-align: center;
+    top: 24%;
+    color: white;
+    font-size: larger;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 0px;
 }
 
 svg rect {
@@ -94,6 +108,15 @@ svg rect {
 .countryLabelBg {
     fill: #30BCED;
     /* country label background colour */
+}
+
+
+/*flow part*/
+
+.line {
+    stroke: pink;
+    stroke-width: 5;
+
 }
 
 .circle {

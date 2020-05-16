@@ -28,7 +28,6 @@ function zoomed() {
     flow.attr("transform", "translate(" + [t.x, t.y] + ")scale(" + t.k + ")");
     circle.attr("transform", "translate(" + [t.x, t.y] + ")scale(" + t.k + ")");
 }
-
 // Define map zoom behaviour
 var zoom = d3.zoom()
     .on("zoom", zoomed);
@@ -43,7 +42,7 @@ function getTextBox(selection) {
 // Function that calculates zoom/pan limits and sets zoom to default value 
 function initiateZoom() {
     // Define a "minzoom" whereby the "Countries" is as small possible without leaving white space at top/bottom or sides
-    minZoom =  Math.max($("#map-holder").width() / w, $("#map-holder").height() / h);
+    minZoom = Math.max($("#map-holder").width() / w, $("#map-holder").height() / h);
     // set max zoom to a suitable factor of this value
     maxZoom = 20 * minZoom;
     // set extent of zoom to chosen values
@@ -137,6 +136,14 @@ $(document).ready(function() {
         countryData = data;
     });
 
+    //let use choose direction
+    var direction = 'out';
+
+    $('#inward').on('click', function() { direction = 'in' })
+    $('#outward').on('click', function() { direction = 'out' })
+
+
+
     d3.csv("./data/flow_betw_country.csv", function(data) {
         flows = data;
         flows.forEach(function(d) { d.count = +d.count; });
@@ -193,10 +200,10 @@ $(document).ready(function() {
                 //add flow effect
                 flow.selectAll("line").remove();
                 circle.selectAll("circle").remove();
-                var iso=d.properties.iso_a3;
-
-                createFlow(iso, flows);
-                appendFlowStat(d.properties.iso_a3,flows);
+                var iso = d.properties.iso_a3;
+                console.log(direction)
+                createFlow(iso, flows, direction);
+                appendFlowStat(d.properties.iso_a3, flows);
             });
 
 
