@@ -40,7 +40,6 @@ function hashCode2(str){
 function getHeatMapColor(scale){
     var START_R = 0, START_G = 255, START_B = 0;
     var END_R = 255, END_G = 0, END_B = 0;
-    scale %= 1;
     r = START_R * (1-scale) + END_R * (scale);
     g = START_G * (1-scale) + END_G * (scale);
     b = START_B * (1-scale) + END_B * (scale);
@@ -48,9 +47,15 @@ function getHeatMapColor(scale){
 }
 
 
+let max = Math.log(2112948)
 // Function to generate country color
-function getCountryStyleString(d, i) {
-    colorFloat = Math.abs(hashCode2(d.properties.name)) / 1000;
+function getCountryStyleString(countryData, d, i) {
+    let num = 0;
+    try {
+        num = countryData[d.properties.iso_a3].ques + countryData[d.properties.iso_a3].ans;
+    } catch (error) {
+    }
+    colorFloat = Math.log(num) / max;
     colorString = getHeatMapColor(colorFloat);
     return "fill:" + colorString + ";"
 }
