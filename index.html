@@ -11,7 +11,18 @@
 <body>
     <div id="map-holder"></div>
     <div class="slidecontainer">
-        <input type="range" min="1" max="100" value="50" class="slider" id="date-slider">
+        <div class="range">
+            <input type="range" min="0" max="5" steps="1" value="0">
+          </div>
+          
+          <ul class="range-labels">
+            <li class="active selected">2014</li>
+            <li>2015</li>
+            <li>2016</li>
+            <li>2017</li>
+            <li>2018</li>
+            <li>2019</li>
+          </ul>
     </div>
     <div id="information-holder">
         <div id="countryName-holder">
