@@ -50,7 +50,8 @@ $('#play-btn').on('click', function () {
         interval = setInterval(function(){
             if (progress >= 5){
                 progress = 0
-                $('#play-btn').trigger('click')
+                if (!islooping)
+                    $('#play-btn').trigger('click')
                 return
             }
             progress += 0.1
@@ -63,4 +64,17 @@ $('#play-btn').on('click', function () {
         $(this).html("&#9654;")
         clearInterval(interval)
     }
+})
+
+let islooping = false
+$('#loop-btn').on('click', function () {
+    if (!islooping) {
+        $(this).removeClass("loop-btn-inactive").addClass("loop-btn-active")
+        $(this).blur()
+    }
+    else {
+        $(this).removeClass("loop-btn-active").addClass("loop-btn-inactive")
+        $(this).blur()
+    }
+    islooping = !islooping
 })

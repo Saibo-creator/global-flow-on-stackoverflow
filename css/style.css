@@ -255,3 +255,13 @@ svg rect {
     border: 1px, #fff;
     color: #fff;
 }
+.loop-btn-inactive {
+    background: #2A2C39;
+    border: 1px, #fff;
+    color: #fff;
+}
+.loop-btn-active{
+    background: #fff;
+    border: 1px, #fff;
+    color: #000;
+}
