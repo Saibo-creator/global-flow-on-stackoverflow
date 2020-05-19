@@ -175,7 +175,7 @@ $(document).ready(function() {
             })
             .attr("class", "country")
             .attr("style", function(d, i) {
-                return getCountryStyleString(d, i);
+                return getCountryStyleString(countryData, d, i);
             })
             //      .attr("stroke-width", 10)
             //      .attr("stroke", "#ff0000")
