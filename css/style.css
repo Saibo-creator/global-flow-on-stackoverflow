@@ -133,8 +133,8 @@ svg rect {
 .slidecontainer {
     position: absolute;
     bottom: 50px;
-    left: 35%;
-    width: 30%; /* Width of the outside container */
+    left: 50%;
+    transform: translateX(-50%);
   }
   
 .range {
@@ -240,4 +240,18 @@ svg rect {
 }
 .range-labels .active.selected::before {
     display: none;
+}
+.slider {
+    width: auto;
+    margin-right: 100px;
+}
+.slider-button {
+    position: absolute;
+    right: 0;
+    top: 0
+}
+#play-btn{
+    background: #2A2C39;
+    border: 1px, #fff;
+    color: #fff;
 }

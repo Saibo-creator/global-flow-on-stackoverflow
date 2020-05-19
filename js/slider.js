@@ -4,9 +4,8 @@ var sheet = document.createElement('style'),
 
 document.body.appendChild(sheet);
 
-var getTrackStyle = function (el) {  
-  var curVal = el.value,
-      val = curVal * 20,
+var getTrackStyle = function (curVal) {  
+  var val = curVal * 20,
       style = '';
   
   // Set active label
@@ -27,13 +26,41 @@ var getTrackStyle = function (el) {
 }
 
 $rangeInput.on('input', function () {
-  sheet.textContent = getTrackStyle(this);
+    progress = parseInt($(this).val())
+  sheet.textContent = getTrackStyle($(this).val());
 });
 
 // Change input value on label click
 $('.range-labels li').on('click', function () {
   var index = $(this).index();
-  
+  if (playing){
+      $('#play-btn').trigger('click')
+  }
   $rangeInput.val(index).trigger('input');
   
 });
+
+let playing = false
+let interval
+let progress = 0.0
+$('#play-btn').on('click', function () {
+    if (!playing){
+        playing = true
+        $(this).html("&#9632;")
+        interval = setInterval(function(){
+            if (progress >= 5){
+                progress = 0
+                $('#play-btn').trigger('click')
+                return
+            }
+            progress += 0.1
+            sheet.textContent = getTrackStyle(Math.floor(progress));
+            $rangeInput.val(Math.floor(progress))
+        }, 100)
+    }
+    else {
+        playing = false
+        $(this).html("&#9654;")
+        clearInterval(interval)
+    }
+})
