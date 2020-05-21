@@ -13,9 +13,28 @@ function createFlow(iso, flows, direction) {
     if (direction == "out") {
 
         flows = flows.filter(function(v) { return v.ques_owner_country == iso }).slice(0, 20);
+
+        for (var i = 0; i < flows.length; i++) {
+            iso = flows[i].ans_owner_country;
+            d3.select("#countryLabel" + iso).style("display", "block");
+            if (iso != flows[i].ques_owner_country) {
+                d3.select("#countryLabel" + iso).select('text').attr('class', 'countryNameSourceFlow');
+            }
+        }
+
+
     } else if (direction == "in") {
 
         flows = flows.filter(function(v) { return v.ans_owner_country == iso }).slice(0, 20);
+
+        for (var i = 0; i < flows.length; i++) {
+            iso = flows[i].ques_owner_country;
+            d3.select("#countryLabel" + iso).style("display", "block");
+            if (iso != flows[i].ans_owner_country) {
+                d3.select("#countryLabel" + iso).select('text').attr('class', 'countryNameSourceFlow');
+            }
+        }
+
     }
 
     flow.selectAll("line")
@@ -73,13 +92,9 @@ function createFlow(iso, flows, direction) {
 
     // showing selected countries label on click
 
-    for (var i = 0; i < flows.length; i++) {
-        iso = flows[i].ques_owner_country;
-        d3.select("#countryLabel" + iso).style("display", "block");
-        if (iso != flows[i].ans_owner_country) {
-            d3.select("#countryLabel" + iso).select('text').attr('class', 'countryNameSourceFlow');
-        }
-    }
+
+
+
 
 
 
