@@ -129,6 +129,13 @@ countryLabelGroup = svg.append("g").attr("id", "countryLabelGroup");
 var defs = svg.append('defs')
     .attr("id", "defs");
 
+
+
+
+localStorage.setItem("direction","out");
+
+
+
 $(document).ready(function() {
     //get country data
     var countryData;
@@ -137,8 +144,6 @@ $(document).ready(function() {
     });
 
     //let use choose direction
-    var direction = 'out';
-
     $('#inward').on('click', function() { direction = 'in' })
     $('#outward').on('click', function() { direction = 'out' })
 
@@ -189,6 +194,8 @@ $(document).ready(function() {
             })
             // add an onclick action to zoom into clicked country
             .on("click", function(d, i) {
+                var direction = localStorage.getItem("direction");
+
                 d3.selectAll(".country").classed("country-on", false);
                 d3.select(this).classed("country-on", true);
                 if (d.properties.iso_a3 in countryData) {
@@ -201,7 +208,6 @@ $(document).ready(function() {
                 flow.selectAll("line").remove();
                 circle.selectAll("circle").remove();
                 var iso = d.properties.iso_a3;
-                console.log(direction)
                 createFlow(iso, flows, direction);
                 appendFlowStat(d.properties.iso_a3, flows);
             });
@@ -250,9 +256,9 @@ $(document).ready(function() {
                     showStat(d, null);
                 }
 
-                //add flow effect
-                flow.selectAll("line").remove();
-                createFlow(d.properties.iso_a3, flows);
+                // //add flow effect
+                // flow.selectAll("line").remove();
+                // createFlow(d.properties.iso_a3, flows);
 
 
             });
