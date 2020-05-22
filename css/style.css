@@ -129,8 +129,3 @@ svg rect {
     color: #9966CC;
     fill: #9966CC;
 }
-
-.sr-only{
-    position: 'center';
-    z-index: 1;
-}
