@@ -41,6 +41,7 @@ body {
 .num{
     margin-left:0.7em;
     font-variant-numeric: oldstyle-nums;
+    font-size: 1em;
     display: block-inline;
 }
 .user_container{
@@ -108,7 +109,7 @@ body {
 .country-name {
     position: relative;
     text-align: center;
-    top: 24%;
+    top: 15%;
     color: white;
     font-size: xx-large;
     font-weight: 600;
