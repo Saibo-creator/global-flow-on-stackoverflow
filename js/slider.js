@@ -8,6 +8,8 @@ var getTrackStyle = function (curVal) {
   var val = curVal * 20,
       style = '';
   
+  
+
   // Set active label
   $('.range-labels li').removeClass('active selected');
   
@@ -27,6 +29,10 @@ var getTrackStyle = function (curVal) {
 
 $rangeInput.on('input', function () {
     progress = parseInt($(this).val())
+    
+    countries.attr("style", function(d, i) {
+      return getCountryStyleString(surveyData, d, i, progress);
+  })
   sheet.textContent = getTrackStyle($(this).val());
 });
 
@@ -55,6 +61,9 @@ $('#play-btn').on('click', function () {
                 return
             }
             progress += 0.1
+            countries.attr("style", function(d, i) {
+              return getCountryStyleString(surveyData, d, i, progress);
+          })
             sheet.textContent = getTrackStyle(Math.floor(progress));
             $rangeInput.val(Math.floor(progress))
         }, 100)
