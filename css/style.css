@@ -74,7 +74,7 @@ body {
 #userChangeLineChart{
     margin-top:1em;
     height:35vh;
-    width: 23.5vw;
+    width: 24vw;
 }
 #countryName-holder {
     padding: 5%;
@@ -92,11 +92,7 @@ body {
     border-bottom: 1px solid rgb(220, 220, 220);
     text-align: justify;
 }
-#user-piechart svg{
-    display: block;
-    margin: auto;
 
-}
 #progress-bar {
     padding: 2.5%;
     margin-left: 1em;

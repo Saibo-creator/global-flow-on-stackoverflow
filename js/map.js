@@ -217,7 +217,7 @@ $(document).ready(function() {
                 circle.selectAll("circle").remove();
                 var iso = d.properties.iso_a3;
                 createFlow(iso, flows, direction);
-                appendFlowStat(d.properties.iso_a3, flows);
+                appendFlowStat(d.properties.iso_a3, flows,countryData);
             });
 
 

@@ -48,7 +48,7 @@ function showStat(c, d,worldData,surveyData) {
             },
             axisY:{
                 includeZero: false,
-                title: "Population",
+                // title: "Population",
                 gridColor: "#f5f5f5",
                 lineColor: "#f5f5f5",
                 labelFontColor: "white",
@@ -87,7 +87,7 @@ function showStat(c, d,worldData,surveyData) {
 
 
 
-function appendFlowStat(iso, flows ) {
+function appendFlowStat(iso, flows,countryData ) {
     flows = flows.filter(function(v) { return v.ans_owner_country == iso; }).slice(0, 20);
     if (flows != null) {
         // $('#statistics-holder').append("<p>" + flows[0].ans_owner_country +
@@ -105,7 +105,12 @@ function appendFlowStat(iso, flows ) {
         progress_bar_class = ["progress-bar progress-bar-animated progress-bar-striped", "progress-bar progress-bar-animated progress-bar-striped bg-success", "progress-bar progress-bar-animated progress-bar-striped bg-info", "progress-bar progress-bar-animated progress-bar-striped bg-warning", "progress-bar progress-bar-animated progress-bar-striped bg-danger"]
         flows.forEach(function(flow, i) {
             if (i <= 4) {
-                $('#progress-bar').append('<div style="margin-top:20px;margin-bottom: 0 px; ">' + flow.ques_owner_country + ':' + flow.count + '</div>')
+                $('#progress-bar').append('<div style="margin-top:20px;margin-bottom: 0 px; "><i id="country-flow-flag-'+ flow.ques_owner_country +'" ></i> ' + flow.ques_owner_country + ':&nbsp;&nbsp;' + flow.count + '</div>')
+                var country_name = countryData[flow.ques_owner_country].Country
+                // console.log(country_name)
+                var classes=[(country_name.toLowerCase()),'flag']
+                $("#country-flow-flag-"+flow.ques_owner_country).addClass(classes.join(" "));
+
                 $('#progress-bar').append('<div class="progress progress-striped active">' +
                     '<div ' + 'id=' + i + ' role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:' + "0%;>"+
                     '<span class="sr-only">'+(flow.count / largest_flow_count * 100).toFixed(1) + '%'+'</span>' +
