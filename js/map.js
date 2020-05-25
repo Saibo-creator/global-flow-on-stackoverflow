@@ -134,12 +134,12 @@ var defs = svg.append('defs')
 
 localStorage.setItem("direction","out");
 
-
+let countries
+let surveyData = {}
 
 $(document).ready(function() {
     //get country data
-    var countryData,worldData;
-    var surveyData = {};
+    var countryData, worldData;
     $.getJSON("data/country_data.json", function(data) {
         countryData = data
         worldData = countryData["WORLD"]
@@ -188,7 +188,7 @@ $(document).ready(function() {
             })
             .attr("class", "country")
             .attr("style", function(d, i) {
-                return getCountryStyleString(countryData, d, i);
+                return getCountryStyleString(surveyData, d, i, 0);
             })
             //      .attr("stroke-width", 10)
             //      .attr("stroke", "#ff0000")
