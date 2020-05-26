@@ -7,21 +7,75 @@ body {
 }
 
 #map-holder {
-    width: 100vw;
+    width: 75vw;
     height: 100vh;
     background-color: #2A2C39;
 }
-
+#outward{
+    margin-left: 0.5rem;
+}
+#inward{
+    margin-left: 1.5rem;
+}
 #information-holder {
     height: 100vh;
     width: 25vw;
-    background-color: rgba(105, 105, 105, 0.85);
+    background-color: rgba(42, 44, 57, 0.85);
     position: absolute;
     top: 0;
     right: 0;
     z-index: 1;
+    overflow-y: scroll;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30;
 }
 
+#switch{
+    font-size: 1em;
+    line-height: 1;
+    margin-top:0.7rem;
+}
+/* #progress-bar-large{
+    padding: left 1em;
+} */
+.num{
+    margin-left:0.7em;
+    font-variant-numeric: oldstyle-nums;
+    font-size: 1em;
+    display: block-inline;
+}
+.user_container{
+    margin-top: 1rem;
+    text-align: center;
+    padding: 0.5em;
+}
+.num_indicator{
+    /* margin-left:0.5em; */
+    display: inline-block;
+    background-color: rgba(16, 26, 9, 0.9);
+    border-radius: 5px;
+    padding: 0.2em 0.5em 0.2em 0.5em;
+    width: 50%px;
+}
+.num_container{
+    text-align: center;
+}
+.num_indicator span{
+    padding-top:0.5em;
+    padding-bottom:0.5em;
+}
+.num_container div{
+    display: inline-block;
+}
+.num_container div:nth-child(2){
+    margin-left: 2em;
+}
+
+#userChangeLineChart{
+    margin-top:1em;
+    height:35vh;
+    width: 24vw;
+}
 #countryName-holder {
     padding: 5%;
     height: 12vh;
@@ -31,6 +85,7 @@ body {
 
 #statistics-holder {
     /* margin: 2.5%; */
+    margin-top: 1em;
     padding: 2.5%;
     color: white;
     border-top: 1px solid rgb(220, 220, 220);
@@ -40,7 +95,8 @@ body {
 
 #progress-bar {
     padding: 2.5%;
-    width: 20vw;
+    margin-left: 1em;
+    width: 23vw;
     color: white;
     text-align: justify;
 }
@@ -49,20 +105,22 @@ body {
 .country-name {
     position: relative;
     text-align: center;
-    top: 24%;
+    top: 15%;
     color: white;
-    font-size: larger;
+    font-size: xx-large;
     font-weight: 600;
+    font-family: cursive;
 }
 
 .hbar-title {
     position: relative;
     text-align: center;
-    top: 24%;
+    top: 17%;
     color: white;
-    font-size: larger;
-    font-weight: 600;
-    margin-top: 30px;
+    font-family: cursive;
+    font-size:x-large;
+    font-weight: 500;
+    margin-top: 1em;
     margin-bottom: 0px;
 }
 

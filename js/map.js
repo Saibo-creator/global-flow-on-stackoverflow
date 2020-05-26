@@ -14,7 +14,7 @@ var infoWidth = $('body').width();
 var projection = d3.geoEquirectangular()
     .center([0, 15]) // set centre to further North as we are cropping more off bottom of map
     .scale([w / (2 * Math.PI)]) // scale to fit group width
-    .translate([(w - 0.64 * infoWidth) / 2, h / 2]); // ensure centred in group
+    .translate([w  / 2, h / 2]); // ensure centred in group
 
 // Define map path
 var path = d3.geoPath()
@@ -134,13 +134,15 @@ var defs = svg.append('defs')
 
 localStorage.setItem("direction","out");
 
-
+let countries
+let surveyData = {}
 
 $(document).ready(function() {
     //get country data
-    var countryData;
+    var countryData, worldData;
     $.getJSON("data/country_data.json", function(data) {
-        countryData = data;
+        countryData = data
+        worldData = countryData["WORLD"]
     });
 
     //let use choose direction
@@ -159,6 +161,12 @@ $(document).ready(function() {
 
     });
 
+    d3.csv("./data/survey_particp_14_19.csv", function(data) {
+        data.forEach(function(d) { 
+            surveyData[d.iso3] = [parseInt(d['2014']),parseInt(d['2015']),parseInt(d['2016']),parseInt(d['2017']),parseInt(d['2018']),parseInt(d['2019'])]
+        });
+
+    });
     // get map data
     d3.json("data/world.geo.json", function(json) {
         //Bind data and create one path per GeoJSON feature
@@ -180,7 +188,7 @@ $(document).ready(function() {
             })
             .attr("class", "country")
             .attr("style", function(d, i) {
-                return getCountryStyleString(countryData, d, i);
+                return getCountryStyleString(surveyData, d, i, 0);
             })
             //      .attr("stroke-width", 10)
             //      .attr("stroke", "#ff0000")
@@ -200,16 +208,16 @@ $(document).ready(function() {
                 d3.select(this).classed("country-on", true);
                 if (d.properties.iso_a3 in countryData) {
                     let cData = countryData[d.properties.iso_a3]
-                    showStat(d, cData);
+                    showStat(d, cData,worldData,surveyData[d.properties.iso_a3]);
                 } else {
-                    showStat(d, null);
+                    showStat(d, null,worldData,surveyData[d.properties.iso_a3]);
                 }
-                //add flow effect
+                //add flow effect (comment for test)
                 flow.selectAll("line").remove();
                 circle.selectAll("circle").remove();
                 var iso = d.properties.iso_a3;
                 createFlow(iso, flows, direction);
-                appendFlowStat(d.properties.iso_a3, flows);
+                appendFlowStat(d.properties.iso_a3, flows,countryData);
             });
 
 
@@ -251,9 +259,9 @@ $(document).ready(function() {
                 d3.select("#country" + d.properties.iso_a3).classed("country-on", true);
                 if (d.properties.iso_a3 in countryData) {
                     let cData = countryData[d.properties.iso_a3]
-                    showStat(d, cData);
+                    showStat(d, cData,worldData,surveyData[d.properties.iso_a3]);
                 } else {
-                    showStat(d, null);
+                    showStat(d, null,worldData,surveyData[d.properties.iso_a3]);
                 }
 
                 // //add flow effect

@@ -47,12 +47,16 @@ function getHeatMapColor(scale){
 }
 
 
-let max = Math.log(2112948)
+let max = Math.log(20949)
 // Function to generate country color
-function getCountryStyleString(countryData, d, i) {
+function getCountryStyleString(surveyData, d, i, year) {
     let num = 0;
     try {
-        num = countryData[d.properties.iso_a3].ques + countryData[d.properties.iso_a3].ans;
+        if (year > 5) year = 5
+        num = (1 - year%1) * surveyData[d.properties.iso_a3][Math.floor(year)]
+        if (year < 5) {
+            num += (year % 1) * surveyData[d.properties.iso_a3][Math.floor(year) + 1]
+        }
     } catch (error) {
     }
     colorFloat = Math.log(num) / max;
