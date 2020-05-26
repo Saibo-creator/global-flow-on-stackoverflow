@@ -23,60 +23,67 @@ function showStat(c, d,worldData,surveyData) {
             '</div>'+
             '</div>'
         );
-        $('#statistics-holder').append("<div id=\"userChangeLineChart\" ></div>")
-        chartHeight = $('#userChangeLineChart').height()
-        chartWidth = $('#userChangeLineChart').width()
-        var chart = new CanvasJS.Chart("userChangeLineChart", {
-            animationEnabled: true,
-            width: chartWidth,
-            height: chartHeight,
-            // theme: "light2",
-            backgroundColor: null,
-            title:{
-                text: "Users' Population Over Years",
-                fontSize: 25,
-                fontWeight:"normal",
-                fontFamily: "cursive",
-                fontColor: "white",
-            },
-            axisX: {
-                title: "Year",
-                lineColor: "white",
-                labelFontColor: "white",
-                titleFontColor: "white",
-                valueFormatString:"####"
-            },
-            axisY:{
-                includeZero: false,
-                // title: "Population",
-                gridColor: "#f5f5f5",
-                lineColor: "#f5f5f5",
-                labelFontColor: "white",
-                titleFontColor: "white"
-            },
-            data: [{        
-                type: "line",
-                lineColor: "#ebe306",
-                color:"#ff7373",
-                indexLabelFontSize: 10,
-                xValueFormatString:"Year ####",
-                dataPoints: [
-                { x: 2014, y: surveyData[0] },
-                { x: 2015, y: surveyData[1] },
-                { x: 2016, y: surveyData[2] },
-                { x: 2017, y: surveyData[3] },
-                { x: 2018, y: surveyData[4] },
-                { x: 2019, y: surveyData[5] },
-                ]
-            }]
-        });
-        chart.render();
+        console.log(surveyData==null)
+        if(surveyData != null){
+            $('#statistics-holder').append("<div id=\"userChangeLineChart\" ></div>")
+            chartHeight = $('#userChangeLineChart').height()
+            chartWidth = $('#userChangeLineChart').width()
+            var chart = new CanvasJS.Chart("userChangeLineChart", {
+                animationEnabled: true,
+                width: chartWidth,
+                height: chartHeight,
+                // theme: "light2",
+                backgroundColor: null,
+                title:{
+                    text: "Users' Population Over Years",
+                    fontSize: 25,
+                    fontWeight:"normal",
+                    fontFamily: "cursive",
+                    fontColor: "white",
+                },
+                axisX: {
+                    title: "Year",
+                    lineColor: "white",
+                    labelFontColor: "white",
+                    titleFontColor: "white",
+                    valueFormatString:"####"
+                },
+                axisY:{
+                    includeZero: false,
+                    // title: "Population",
+                    gridColor: "#f5f5f5",
+                    lineColor: "#f5f5f5",
+                    labelFontColor: "white",
+                    titleFontColor: "white"
+                },
+                data: [{        
+                    type: "line",
+                    lineColor: "#ebe306",
+                    color:"#ff7373",
+                    indexLabelFontSize: 10,
+                    xValueFormatString:"Year ####",
+                    dataPoints: [
+                    { x: 2014, y: surveyData[0] },
+                    { x: 2015, y: surveyData[1] },
+                    { x: 2016, y: surveyData[2] },
+                    { x: 2017, y: surveyData[3] },
+                    { x: 2018, y: surveyData[4] },
+                    { x: 2019, y: surveyData[5] },
+                    ]
+                }]
+            });
+            chart.render();
+            }
+        
+            else{
 
+                $('#statistics-holder').append("<div id=\"no-info\"><i class=\"fas fa-exclamation-circle\" style=\"color:#ff6666\"></i>&nbsp;&nbsp;There is no information about users' population changing over years for this country.</div>")
+            }
 
 
         
     } else {
-        $('#statistics-holder').html("There is no information for this country.");
+        $('#statistics-holder').html("<div>There is no information for this country.</div>");
     }
 }
 
@@ -90,6 +97,7 @@ function showStat(c, d,worldData,surveyData) {
 function appendFlowStat(iso, flows,countryData ) {
     flows = flows.filter(function(v) { return v.ans_owner_country == iso; }).slice(0, 20);
     if (flows != null) {
+        // console.log(flows)
         // $('#statistics-holder').append("<p>" + flows[0].ans_owner_country +
         //     "'s top20 most conneccetd user communities are(in descending order):</p> ");
         // flows.forEach(function(flow, i) {
@@ -99,7 +107,7 @@ function appendFlowStat(iso, flows,countryData ) {
         // $('#statistics-holder').append('</p>' + '<br>');
         // $('#statistics-holder').append();
 
-        $('#progress-bar-large').html('<div id="progress-bar-large"><p class="hbar-title">Top5 flows</p>');
+        $('#progress-bar-large').html('<div id="progress-bar-large"><p class="hbar-title">Top5 flows</p><p>(porportion to the largest flow)</p>');
         $('#progress-bar-large').append('<div id="progress-bar">');
         largest_flow_count = flows[0].count;
         progress_bar_class = ["progress-bar progress-bar-animated progress-bar-striped", "progress-bar progress-bar-animated progress-bar-striped bg-success", "progress-bar progress-bar-animated progress-bar-striped bg-info", "progress-bar progress-bar-animated progress-bar-striped bg-warning", "progress-bar progress-bar-animated progress-bar-striped bg-danger"]
