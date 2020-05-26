@@ -11,28 +11,6 @@
 
 <body>
     <div id="map-holder"></div>
-    <div class="slidecontainer">
-        <div class="slider">
-            <div class="range">
-            <input type="range" min="0"     max="5" steps="1" value="0">
-            </div>
-            
-            <ul class="range-labels">
-                <li class="active selected">2014</li>
-                <li>2015</li>
-                <li>2016</li>
-                <li>2017</li>
-                <li>2018</li>
-                <li>2019</li>
-            </ul>
-        </div>
-        
-        <div class="slider-button">
-            <button id="play-btn">&#9654;</button>
-            <button id="loop-btn" class="loop-btn-inactive">&#10226;</button>
-        </div>
-
-    </div>
     <div id="information-holder">
         <div id="countryName-holder">
             <p class="country-name">Welcome to our website</p>
@@ -49,7 +27,7 @@
             <div id="progress-bar">
                 <div style="margin-top:30px;margin-bottom: 0 px; ">United States: 529504</div>
                 <div class="progress progress-striped">
-                    <div id=usa class="progress-bar-animated progress-bar-striped bg-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                    <div id="usa" class="progress-bar-animated progress-bar-striped bg-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                     </div>
                 </div>
                 <div style="margin-top:30px;margin-bottom: 0 px; ">India: 491015</div>
@@ -86,7 +64,6 @@
     <script src="js/progress-bar.js"></script>
     <script src="js/flow.js"></script>
     <script src="js/markers.js"></script>
-    <script src="js/slider.js"></script>
 </body>
 
 </html>
