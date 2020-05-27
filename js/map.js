@@ -216,22 +216,6 @@ $(document).ready(function() {
                 flow.selectAll("line").remove();
                 circle.selectAll("circle").remove();
                 let iso = d.properties.iso_a3;
-                $('.countryLabelOffmouseout').each(function () {
-                    let id = "#" + this.id
-                    d3.select(id).style("display", "none");
-                    d3.select(id).on("mouseout",function(){
-                        d3.select(id).style("display", "none");
-                    })
-                    d3.select(id).classed("countryLabelOffmouseout", false)
-                });
-                $('.countryOffmouseout').each(function () {
-                    let id = "#countryLabel" + this.id.split('country')[1]
-                    d3.select(id).style("display", "none");
-                    d3.select(id).on("mouseout",function(){
-                        d3.select(id).style("display", "none");
-                    })
-                    d3.select(id).classed("countryOffmouseout", false)
-                });
                 createFlow(iso, flows, direction);
                 appendFlowStat(d.properties.iso_a3, flows,countryData);
             });
@@ -279,24 +263,6 @@ $(document).ready(function() {
                 } else {
                     showStat(d, null,worldData,surveyData[d.properties.iso_a3]);
                 }
-                $('.countryLabelOffmouseout').each(function () {
-                    let id = "#" + this.id
-                    d3.select(id).style("display", "none");
-                    d3.select(id).on("mouseout",function(){
-                        d3.select(id).style("display", "none");
-                    })
-                    d3.select(id).classed("countryLabelOffmouseout", false)
-                });
-                
-                $('.countryOffmouseout').each(function () {
-                    let id = "#countryLabel" + this.id.split('country')[1]
-                    d3.select(id).style("display", "none");
-                    // console.log(id)
-                    d3.select(id).on("mouseout",function(){
-                        d3.select(id).style("display", "none");
-                    })
-                    d3.select(id).classed("countryOffmouseout", false)
-                });
                 // //add flow effect
                 // flow.selectAll("line").remove();
                 // createFlow(d.properties.iso_a3, flows);
@@ -329,13 +295,7 @@ $(document).ready(function() {
         initiateZoom();
     });
 
-    d3.select('.countryNameSourceFlow').on("mouseover",function(e){
-        console.log(e.target.id)
-        d3.select(e.target.id).style("fill","white")
-    })
-    d3.select('.countryNameSourceFlow').on("mouseout", function(e){
-        d3.select(e.target.id).style("fill","black")
-    })
+    
 });
 
 
@@ -346,3 +306,12 @@ $(document).ready(function() {
 // $('.country').mouseout(function(){
 //     $(this).style("display", "none");
 // })
+
+$('.countryLabelOffmouseout').mouseover(function(e){
+    console.log("countryLabelOffmouseout: " + e.target.id + "mouseover")
+    d3.select(e.target.id).select('text').style("fill","white")
+})
+$('.countryLabelOffmouseout').mouseover(function(e){
+    console.log("countryLabelOffmouseout: " + e.target.id + "mouseout")
+    d3.select(e.target.id).select('text').style("fill","black")
+})
