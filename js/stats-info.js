@@ -11,8 +11,6 @@ function showStat(c, d,worldData,surveyData) {
     }
 
     direc = localStorage.getItem("direction");
-    // console.log(direc);
-    // console.log(surveyData)
     var country_name = c.properties.name
     if (d != null) {
         $('#statistics-holder').html('<div class=\"country-statistic\">'+
@@ -96,7 +94,7 @@ function showStat(c, d,worldData,surveyData) {
 
 function appendFlowStat(iso, flows,countryData ) {
     flows = flows.filter(function(v) { return v.ans_owner_country == iso; }).slice(0, 20);
-    if (flows[0] != null) {
+    if (flows != null) {
         // console.log(flows)
         // $('#statistics-holder').append("<p>" + flows[0].ans_owner_country +
         //     "'s top20 most conneccetd user communities are(in descending order):</p> ");
@@ -107,7 +105,7 @@ function appendFlowStat(iso, flows,countryData ) {
         // $('#statistics-holder').append('</p>' + '<br>');
         // $('#statistics-holder').append();
 
-        $('#progress-bar-large').html('<div id="progress-bar-large"><p class="hbar-title">Top5 flows</p><p>(proportion to the largest flow)</p>');
+        $('#progress-bar-large').html('<p class="hbar-title">Top5 flows</p><p>(proportion to the largest flow)</p>');
         $('#progress-bar-large').append('<div id="progress-bar">');
         // console.log(flows[0])
         // console.log(flows)

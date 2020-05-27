@@ -12,13 +12,46 @@
 <body>
     <nav>
         <ul>
-              <li><a href="#">Abstract</a></li>
-              <li><a href="#">User-Dominated</a></li>
-              <li><a href="#">Questions & Answer</a></li>
-              <li><a href="team.html">Team</a></li>
+            <li><a href="#abstract_block">Abstract</a></li>
+            <li><a href="#map_block">Users / Q&A Map</a></li>
+            <li><a href="#team_block">Team</a></li>
         </ul>
    </nav>
 
+   <section id="abstract_block" class="page_block">
+        <p class="block_title">Abstract</p>
+        <div>
+            <p class="abstract_title"> DataSet Description</p>
+            <p>
+                Stackoverflow is a question and answer site for professional and enthusiast programmers. It has become a huge community with many developers from all over the world. We want to explore this community, discover the relationship between users’ country and posts (including questions and answers) and dig out the knowledge flow between regions.
+                The dataset is extracted from Google BigQuery Stack Overflow and use SQL queries to grasp desired data. The data includes:
+            </p>
+                
+                <ul>
+                    <li>Users data - it contains information about users’ country of residence, id, name, account created date etc.</li>
+                    <li>Questions data - it contains questions from 2016 to 2019 ？？？including questions’ id, answer count, created time, score and owner user’s id and etc.</li>
+                    <li>Answers data - it contains answers from 2016 to 2019 ？？？including answers’ id, created time, parent (question) id, score, owner user’s id and etc.</li>
+                </ul>
+        </div>
+        <div>
+            <p class="abstract_title"> About the Website</p>
+            <p>
+                User-dominated map description.<br>
+                If you are intereted in it Go to xxxx.<br>
+                Questions &  Answers map description<br>
+                If you are intereted in it. Go to xxx.
+            </p>
+        </div>
+        <div class="arrow">
+            <!-- <div style="font-family: cursive">Go to map</div> -->
+            <!-- <span></span> -->
+            <span></span>
+            <span></span>
+
+        </div>
+    </section>
+
+   <section id="map_block",class="page_block">
     <div id="map-holder"></div>
     <div class="slidecontainer">
         <div class="slider">
@@ -90,6 +123,31 @@
             </div>
         </div>
     </div>
+   </section>
+
+   <section id="team_block" class="page_block">
+        <p class="block_title">Team member</p>
+        <ul>
+            <li>
+                <img src="img/liang.jpg" alt="Yueran Liang"/>
+                <p class="name">Yueran LIANG</p>
+                <p>Master Data Science</p>
+                <p><i class="far fa-envelope"></i>&nbsp;&nbsp;yueran.liang@epfl.ch</p>
+            </li>
+            <li>
+                <img src="img/geng.jpg" alt="Saibo GENG"/>
+                <p class="name">Saibo GENG</p>
+                <p>Master Electronic Engineering</p>
+                <p><i class="far fa-envelope"></i>&nbsp;&nbsp;saibo.geng@epfl.ch</p>
+            </li>
+            <li>
+                <img src="img/wang.jpg" alt="Yuefei WANG"/>
+                <p class="name">Yuefei WANG</p>
+                <p>Bachelor Computer Science</p>
+                <p><i class="far fa-envelope"></i>&nbsp;&nbsp;yufei.wang@epfl.ch</p>
+            </li>
+        </ul>
+    </section>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>

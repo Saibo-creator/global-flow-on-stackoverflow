@@ -307,11 +307,9 @@ $(document).ready(function() {
 //     $(this).style("display", "none");
 // })
 
-$('.countryLabelOffmouseout').mouseover(function(e){
-    console.log("countryLabelOffmouseout: " + e.target.id + "mouseover")
-    d3.select(e.target.id).select('text').style("fill","white")
-})
-$('.countryLabelOffmouseout').mouseover(function(e){
-    console.log("countryLabelOffmouseout: " + e.target.id + "mouseout")
-    d3.select(e.target.id).select('text').style("fill","black")
+$('.arrow').click(function(){
+    console.log(111)
+    $('html, body').animate({
+        scrollTop: $("#map_block").offset().top
+    }, 0.1);
 })
