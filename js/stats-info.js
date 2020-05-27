@@ -11,8 +11,6 @@ function showStat(c, d,worldData,surveyData) {
     }
 
     direc = localStorage.getItem("direction");
-    console.log(direc);
-    console.log(surveyData)
     var country_name = c.properties.name
     if (d != null) {
         $('#statistics-holder').html('<div class=\"country-statistic\">'+
@@ -23,7 +21,7 @@ function showStat(c, d,worldData,surveyData) {
             '</div>'+
             '</div>'
         );
-        console.log(surveyData==null)
+        // console.log(surveyData==null)
         if(surveyData != null){
             $('#statistics-holder').append("<div id=\"userChangeLineChart\" ></div>")
             chartHeight = $('#userChangeLineChart').height()
@@ -83,7 +81,7 @@ function showStat(c, d,worldData,surveyData) {
 
         
     } else {
-        $('#statistics-holder').html("<div>There is no information for this country.</div>");
+        $('#statistics-holder').append("<div id=\"no-info\"><i class=\"fas fa-exclamation-circle\" style=\"color:#ff6666\"></i>&nbsp;&nbsp;There is no information about users' population changing over years for this country.</div>")
     }
 }
 
@@ -107,8 +105,10 @@ function appendFlowStat(iso, flows,countryData ) {
         // $('#statistics-holder').append('</p>' + '<br>');
         // $('#statistics-holder').append();
 
-        $('#progress-bar-large').html('<div id="progress-bar-large"><p class="hbar-title">Top5 flows</p><p>(porportion to the largest flow)</p>');
+        $('#progress-bar-large').html('<p class="hbar-title">Top5 flows</p><p>(proportion to the largest flow)</p>');
         $('#progress-bar-large').append('<div id="progress-bar">');
+        // console.log(flows[0])
+        // console.log(flows)
         largest_flow_count = flows[0].count;
         progress_bar_class = ["progress-bar progress-bar-animated progress-bar-striped", "progress-bar progress-bar-animated progress-bar-striped bg-success", "progress-bar progress-bar-animated progress-bar-striped bg-info", "progress-bar progress-bar-animated progress-bar-striped bg-warning", "progress-bar progress-bar-animated progress-bar-striped bg-danger"]
         flows.forEach(function(flow, i) {
@@ -138,6 +138,6 @@ function appendFlowStat(iso, flows,countryData ) {
 
 
     } else {
-        $('#statistics-holder').html("There is no information for this country.");
+        $('#progress-bar-large').html("<div id=\"no-info\"><i class=\"fas fa-exclamation-circle\" style=\"color:#ff6666\"></i>&nbsp;&nbsp;There is no flow information about this country.</div>")
     }
 }

@@ -1,24 +1,79 @@
 //
+function showUp(labelId){
+    return function(){
+        console.log(labelId + " mouseover bind again")
+        d3.select(labelId).style("display", "block");
+    }
+}
 
+function showOff(labelId){
+    return function(){
+        console.log(labelId + " mouseout bind again")
+        d3.select(labelId).style("display", "none");
+    }
+}
 
-
-
+function onFlowMouseOver(iso){
+    return function(){
+        d3.select("#countryLabel" + iso).select('text').style("fill", "#FFFAFF");
+        d3.select("#country" + iso).style("stroke","#fff").style("stroke-width","1")
+    }
+    
+}
+function onFlowMouseOut(iso){
+    return function(){
+        d3.select("#countryLabel" + iso).select('text').style("fill", "black");
+        d3.select("#country" + iso).style("stroke-width","0")
+    }
+   
+}
 
 
 
 //function to create flow with animation
 function createFlow(iso, flows, direction) {
-    //flow mouvement start state
+    //clear last state
+    let relatedLabelid = []
+    $('.countryLabelOffmouseout').each(function () {
+        let id = "#" + this.id
+        d3.select(id).select('text').classed("countryNameSourceFlow", false)
+        d3.select(id).select('text').classed("countryName", true)
+        d3.select(id).classed("countryLabelOffmouseout", false)
+        
+        d3.select(id).on("mouseout",showOff(id))
+        d3.select(id).on("mouseover",showUp(id))
+        d3.select(id).style("display", "none");
+    });
 
+    $('.countryOffmouseout').each(function () {
+        let id = "#" + this.id
+        let labelId = "#countryLabel" + this.id.split('country')[1]
+        // d3.select(id).select('text').classed("countryNameSourceFlow", false)
+        d3.select(id).classed("countryOffmouseout", false)
+        d3.select(id).on("mouseout",showOff(labelId))
+        d3.select(id).on("mouseover",showUp(labelId))
+        // d3.select(labelId).style("display", "none");
+    });
+
+    //flow mouvement start state
     if (direction == "out") {
 
         flows = flows.filter(function(v) { return v.ques_owner_country == iso }).slice(0, 20);
 
         for (var i = 0; i < flows.length; i++) {
             iso = flows[i].ans_owner_country;
-            d3.select("#countryLabel" + iso).style("display", "block");
+            
             if (iso != flows[i].ques_owner_country) {
                 d3.select("#countryLabel" + iso).select('text').attr('class', 'countryNameSourceFlow');
+
+                d3.select("#countryLabel" + iso).on("mouseout",onFlowMouseOut(iso))
+                d3.select("#countryLabel" + iso).on("mouseover",onFlowMouseOver(iso))
+                d3.select("#countryLabel" + iso).attr('class','countryLabelOffmouseout')
+
+                d3.select("#country" + iso).on("mouseout",onFlowMouseOut(iso))
+                d3.select("#country" + iso).on("mouseover",onFlowMouseOut(iso))
+                d3.select("#country" + iso).attr('class','countryOffmouseout')
+                d3.select("#countryLabel" + iso).style("display", "block");
             }
         }
 
@@ -29,9 +84,17 @@ function createFlow(iso, flows, direction) {
 
         for (var i = 0; i < flows.length; i++) {
             iso = flows[i].ques_owner_country;
-            d3.select("#countryLabel" + iso).style("display", "block");
             if (iso != flows[i].ans_owner_country) {
                 d3.select("#countryLabel" + iso).select('text').attr('class', 'countryNameSourceFlow');
+
+                d3.select("#countryLabel" + iso).on("mouseout",onFlowMouseOut(iso))
+                d3.select("#countryLabel" + iso).on("mouseover",onFlowMouseOver(iso))
+                d3.select("#countryLabel" + iso).attr('class','countryLabelOffmouseout')
+                
+                d3.select("#country" + iso).on("mouseout",onFlowMouseOut(iso))
+                d3.select("#country" + iso).on("mouseover",onFlowMouseOut(iso))
+                d3.select("#country" + iso).attr('class','countryOffmouseout')
+                d3.select("#countryLabel" + iso).style("display", "block");
             }
         }
 

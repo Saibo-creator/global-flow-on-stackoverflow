@@ -28,7 +28,7 @@ nav {
 
 nav li {
 	display: inline-block;
-	padding: 0.7rem 1.5rem;
+	padding: 0.7em 2.5em;
 }
 
 nav li a {
@@ -39,108 +39,113 @@ nav li a:hover{
     text-decoration: none;
     color:#d6d2b5;
 }
+
+
+/* block info */
+.page_block{
+    width:100vw;
+    height: 100%;
+    min-height: 100vh;
+    /* border:1px solid white; */
+    
+}
+#abstract_block, #team_block{
+    padding-top: 10vh;
+    text-align: center;
+}
+.block_title{
+    width: 100vw;
+    font-size: xxx-large !important;
+    font-weight: 600;
+    color: cornsilk;
+    /* margin-bottom: 1.5em; */
+    font-family: cursive;
+    text-align: center;
+}
+/* actract info */
+#abstract_block{
+    position: relative;
+    color: cornsilk;
+    
+    
+}
+#abstract_block .block_title{
+    margin-bottom: 1em;
+}
+.abstract_title{
+    font-size: xx-large !important;
+    font-weight: 400;
+    /* margin-top: 1.5em; */
+    /* margin-bottom: 1.5em; */
+    font-family: cursive;
+}
+#abstract_block div{
+    padding:0 8em;
+}
+#abstract_block div p{
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif !important;
+    /* font-weight: 400; */
+    text-align: justify;
+}
+#abstract_block ul{
+    list-style-type: square;
+    text-align: justify;
+}
+#abstract_block ul li{
+    font-family: 'Times New Roman', Times, serif !important;
+    font-size: large;
+}
+.arrow{
+    cursor: pointer;
+    position: absolute;
+    bottom:2.5%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.arrow span{
+    display: block;
+    width: 2em;
+    height: 2em;
+    border-bottom: 5px solid cornsilk;
+    border-right: 5px solid cornsilk;
+    transform: rotate(45deg);
+    margin: -10px;
+    animation: animate 2s infinite;
+}
+.arrow span:nth-child(2){
+    animation-delay: -0.2s;
+}
+.arrow span:nth-child(3){
+    animation-delay: -0.4s;
+}
+@keyframes animate {
+    0%{
+        opacity: 0;
+        transform: rotate(45deg) translate(-20px,-20px);
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: rotate(45deg) translate(20px,20px);
+    }
+}
+/* map block */
+#map_block{
+    
+    position: relative;
+}
+/*map part*/
 #map-holder {
     width: 75vw;
     height: 100vh;
+    display:inline-block;
     /* background-color: #2A2C39; */
     background-color:rgba(42, 44, 57,1);
 }
-#outward{
-    margin-left: 0.5rem;
-}
-#inward{
-    margin-left: 1.5rem;
-}
-#information-holder {
-    height: 95vh;
-    width: 25vw;
-    /* background-color: rgba(42, 44, 57, 0.85); */
-    background-color:rgb(80, 80, 82);
-    position: absolute;
-    top: 5vh;
-    right: 0;
-    z-index: 1;
-    overflow-y: scroll;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 30;
-}
-#no-info{
-    text-align: center;
-    font-size: x-large;
-    padding:1em 1.2em; 
-}
-
-/* #progress-bar-large{
-    padding: left 1em;
-} */
-.num{
-    margin-left:0.7em;
-    font-variant-numeric: oldstyle-nums;
-    font-size: 1em;
-    display: block-inline;
-}
-.user_container{
-    margin-top: 1rem;
-    text-align: center;
-    padding: 0.5em;
-}
-.num_indicator{
-    /* margin-left:0.5em; */
-    display: inline-block;
-    background-color: rgba(16, 26, 9, 0.9);
-    border-radius: 5px;
-    padding: 0.2em 0.5em 0.2em 0.5em;
-    width: 50%px;
-}
-.num_container{
-    text-align: center;
-}
-.num_indicator span{
-    padding-top:0.5em;
-    padding-bottom:0.5em;
-}
-.num_container div{
-    display: inline-block;
-}
-.num_container div:nth-child(2){
-    margin-left: 2em;
-}
-
-#userChangeLineChart{
-    margin-top:1em;
-    height:35vh;
-    width: 24vw;
-}
-#countryName-holder {
-    padding: 2.5%;
-    height: 10vh;
-    text-align: center;
-}
-
-#switch{
-    font-size: 1em;
-    line-height: 1;
-    margin-top:0em;
-}
-#statistics-holder {
-    /* margin: 2.5%; */
-    margin-top: 1em;
-    padding: 2.5%;
-    color: white;
-    border-top: 1px solid rgb(220, 220, 220);
-    border-bottom: 1px solid rgb(220, 220, 220);
-    text-align: justify;
-}
-
-#progress-bar {
-    padding: 0em 1.2em;
-    margin-left: 1em;
-    width: 23vw;
-    color: white;
-    text-align: justify;
-}
-
-
 .country-name {
     position: relative;
     text-align: center;
@@ -151,25 +156,6 @@ nav li a:hover{
     font-family: cursive;
 }
 
-.hbar-title {
-    position: relative;
-    text-align: center;
-    top: 17%;
-    color: white;
-    font-family: cursive;
-    font-size:x-large;
-    font-weight: 500;
-    margin-top: 1em;
-    margin-bottom: 0px;
-}
-.hbar-title + p{
-    text-align: center;
-    color:white;
-}
-svg rect {
-    fill: #2A2C39;
-    /* map background colour */
-}
 
 .country {
     stroke: rgb(107, 161, 206);
@@ -211,6 +197,133 @@ svg rect {
 }
 
 
+/* #outward{
+    margin-left: 0.5rem;
+}
+#inward{
+    margin-left: 1.5rem;
+} */
+/*sidebar */
+#information-holder {
+    padding-top: 5vh;
+    float:right;
+    display:inline-block;
+    height: 100vh;
+    width: 25vw;
+    /* background-color: rgba(42, 44, 57, 0.85); */
+    background-color:rgb(80, 80, 82);
+    /* position: absolute; */
+    /* top: 5vh; */
+    right: 0;
+    z-index: 1;
+    overflow-y: scroll;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30;
+}
+
+#countryName-holder {
+    padding: 2.5%;
+    height: 10vh;
+    text-align: center;
+}
+
+#switch{
+    font-size: 1em;
+    line-height: 1;
+    margin-top:0em;
+}
+
+#no-info{
+    text-align: center;
+    font-size: x-large;
+    padding:1em 1.2em; 
+    color:white
+}
+
+#statistics-holder {
+    /* margin: 2.5%; */
+    margin-top: 1em;
+    padding: 2.5%;
+    color: white;
+    border-top: 1px solid rgb(220, 220, 220);
+    border-bottom: 1px solid rgb(220, 220, 220);
+    text-align: justify;
+}
+
+.num{
+    margin-left:0.7em;
+    font-variant-numeric: oldstyle-nums;
+    font-size: 1em;
+    display: block-inline;
+}
+.user_container{
+    margin-top: 1rem;
+    text-align: center;
+    padding: 0.5em;
+}
+.num_indicator{
+    /* margin-left:0.5em; */
+    display: inline-block;
+    background-color: rgba(16, 26, 9, 0.9);
+    border-radius: 5px;
+    padding: 0.2em 0.5em 0.2em 0.5em;
+    width: 50%px;
+}
+.num_container{
+    text-align: center;
+}
+.num_indicator span{
+    padding-top:0.5em;
+    padding-bottom:0.5em;
+}
+.num_container div{
+    display: inline-block;
+}
+.num_container div:nth-child(2){
+    margin-left: 2em;
+}
+
+#userChangeLineChart{
+    margin-top:1em;
+    height:35vh;
+    width: 24vw;
+}
+
+#progress-bar-large{
+    margin-bottom: 5em;
+}
+#progress-bar {
+    padding: 0em 1.2em;
+    margin-left: 1em;
+    width: 23vw;
+    color: white;
+    text-align: justify;
+}
+
+
+
+.hbar-title {
+    position: relative;
+    text-align: center;
+    top: 17%;
+    color: white;
+    font-family: cursive;
+    font-size:x-large;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0px;
+}
+.hbar-title + p{
+    text-align: center;
+    color:white;
+}
+svg rect {
+    fill: #2A2C39;
+}
+
+
+
+
 /*flow part*/
 
 .line {
@@ -232,46 +345,47 @@ svg rect {
 
 .slidecontainer {
     position: absolute;
-    bottom: 50px;
-    left: 50%;
+    bottom: 3em;
+    left: 45%;
     transform: translateX(-50%);
+    z-index:99;
   }
   
 .range {
     position: relative;
-    width: 550px;
-    height: 5px;
+    width: 35vw;
+    height: 0.3vh;
 }
 .range input {
     width: 100%;
     position: absolute;
-    top: 2px;
-    height: 0;
+    /* top: 0.8em; */
+    height: 0.2em;
     -webkit-appearance: none;
 }
 .range input::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
-    margin: -8px 0 0;
+    width: 1.2vw;
+    height: 1.2vw;
+    margin: -0.8vh 0 0;
     border-radius: 50%;
     background: #37adbf;
     cursor: pointer;
     border: 0 !important;
 }
 .range input::-moz-range-thumb {
-    width: 18px;
-    height: 18px;
-    margin: -8px 0 0;
+    width: 1.2vw;
+    height: 1.2vw;
+    margin: -0.8vh 0 0;
     border-radius: 50%;
     background: #37adbf;
     cursor: pointer;
     border: 0 !important;
 }
 .range input::-ms-thumb {
-    width: 18px;
-    height: 18px;
-    margin: -8px 0 0;
+    width: 1.2vw;
+    height: 1.2vw;
+    margin: -0.8vh 0 0;
     border-radius: 50%;
     background: #37adbf;
     cursor: pointer;
@@ -279,19 +393,19 @@ svg rect {
 }
 .range input::-webkit-slider-runnable-track {
     width: 100%;
-    height: 2px;
+    height: 0.25vh;
     cursor: pointer;
     background: #ffffff;
 }
 .range input::-moz-range-track {
     width: 100%;
-    height: 2px;
+    height: 0.25vh;
     cursor: pointer;
     background: #ffffff;
 }
 .range input::-ms-track {
     width: 100%;
-    height: 2px;
+    height: 0.25vh;
     cursor: pointer;
     background: #ffffff;
 }
@@ -307,14 +421,14 @@ svg rect {
     color: transparent;
 }
 .range-labels {
-    margin: 18px -41px 0;
+    margin: 1.2em -2.0em 0;
     padding: 0;
     list-style: none;
 }
 .range-labels li {
     position: relative;
     float: left;
-    width: 105.5px;
+    width: 6.5vw;
     text-align: center;
     color: #ffffff;
     font-size: 14px;
@@ -322,13 +436,13 @@ svg rect {
 }
 .range-labels li::before {
     position: absolute;
-    top: -25px;
+    top: -1.8em;
     right: 0;
     left: 0;
     content: "";
     margin: 0 auto;
-    width: 9px;
-    height: 9px;
+    width: 0.6vw;
+    height: 0.6vw;
     background: #ffffff;
     border-radius: 50%;
 }
@@ -343,12 +457,12 @@ svg rect {
 }
 .slider {
     width: auto;
-    margin-right: 100px;
+    margin-right: 5.5em;
 }
 .slider-button {
     position: absolute;
     right: 0;
-    top: 0
+    top: -0.5em;
 }
 #play-btn{
     background: #2A2C39;
@@ -365,55 +479,8 @@ svg rect {
     border: 1px, #fff;
     color: #000;
 }
-/* block info */
-.page_block{
-    position: absolute;
-    /* background-color: rgba(42, 44, 57); */
-    top: 10vh;
-    width:100vw;
-    text-align: center;
-}
 
-.block_title{
-    width: 100vw;
-    font-size: xxx-large !important;
-    font-weight: 600;
-    color: cornsilk;
-    /* margin-bottom: 1.5em; */
-    font-family: cursive;
-    text-align: center;
-}
-/* actract info */
-#abstract_block{
-    color: cornsilk;
-}
-#abstract_block .block_title{
-    margin-bottom: 1em;
-}
-.abstract_title{
-    font-size: xx-large !important;
-    font-weight: 400;
-    /* margin-top: 1.5em; */
-    /* margin-bottom: 1.5em; */
-    font-family: cursive;
-}
-#abstract_block div{
-    padding:0 8em;
-}
-#abstract_block div p{
-    font-size: large;
-    font-family: 'Times New Roman', Times, serif !important;
-    /* font-weight: 400; */
-    text-align: justify;
-}
-#abstract_block ul{
-    list-style-type: square;
-    text-align: justify;
-}
-#abstract_block ul li{
-    font-family: 'Times New Roman', Times, serif !important;
-    font-size: large;
-}
+
 
 /* Team info */
 #team_block ul {
