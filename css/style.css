@@ -1,5 +1,6 @@
 body {
     margin: 0;
+/*    background-color: rgba(42, 44, 57,1) !important;*/
     background-color: rgba(42, 44, 57,1) !important;
     font-family: 'Yanone Kaffeesatz', sans-serif;
     font-weight: 200;
@@ -174,7 +175,7 @@ svg rect {
 .country {
     stroke: rgb(107, 161, 206);
     /* country border colour */
-    stroke-width: 1;
+    stroke-width: 0;
     /* country border width */
 }
 
@@ -186,7 +187,7 @@ svg rect {
 }
 
 .country-on {
-    fill: #4B5358 !important;
+    fill: #cafedb !important;
     /* highlight colour for selected country */
 }
 
@@ -214,20 +215,20 @@ svg rect {
 /*flow part*/
 
 .line {
-    stroke: pink;
-    stroke-width: 5;
+    stroke: #abcdef;
+    stroke-width: 6;
 
 }
 
 .circle {
-    color: #9966CC;
-    fill: #9966CC;
+    color: #6666ff;
+    fill: #6666ff;
 
 }
 
 #arrow {
-    color: #9966CC;
-    fill: #9966CC;
+    color: #6666ff;
+    fill: #6666ff;
 }
 
 .slidecontainer {

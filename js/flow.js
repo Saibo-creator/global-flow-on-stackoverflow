@@ -107,7 +107,7 @@ function createFlow(iso, flows, direction) {
         .enter()
         .append("circle")
         .attr('class', 'circle')
-        .attr('r', 7)
+        .attr('r', 3)
         .attr('id', d => 'CircleMouve' + d.ques_owner_country);
 
 
@@ -124,7 +124,7 @@ function createFlow(iso, flows, direction) {
             .ease(d3.easeLinear)
             .attr('cx', d => projection([d.long_ans, d.lat_ans])[0]) // move the circle to 920 on the x axis
             .attr('cy', d => projection([d.long_ans, d.lat_ans])[1])
-            .attr("r", 7)
+            .attr("r", 4)
             .on("end", circleMouvement); // when the transition finishes start again
     }
 
