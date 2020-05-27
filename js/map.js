@@ -134,12 +134,12 @@ var defs = svg.append('defs')
 
 localStorage.setItem("direction","out");
 
-let countries
-let surveyData = {}
+var countries
+var surveyData = {}
 
 $(document).ready(function() {
     //get country data
-    var countryData, worldData;
+    let countryData, worldData;
     $.getJSON("data/country_data.json", function(data) {
         countryData = data
         worldData = countryData["WORLD"]
@@ -202,7 +202,7 @@ $(document).ready(function() {
             })
             // add an onclick action to zoom into clicked country
             .on("click", function(d, i) {
-                var direction = localStorage.getItem("direction");
+                let direction = localStorage.getItem("direction");
 
                 d3.selectAll(".country").classed("country-on", false);
                 d3.select(this).classed("country-on", true);
@@ -215,7 +215,23 @@ $(document).ready(function() {
                 //add flow effect (comment for test)
                 flow.selectAll("line").remove();
                 circle.selectAll("circle").remove();
-                var iso = d.properties.iso_a3;
+                let iso = d.properties.iso_a3;
+                $('.countryLabelOffmouseout').each(function () {
+                    let id = "#" + this.id
+                    d3.select(id).style("display", "none");
+                    d3.select(id).on("mouseout",function(){
+                        d3.select(id).style("display", "none");
+                    })
+                    d3.select(id).classed("countryLabelOffmouseout", false)
+                });
+                $('.countryOffmouseout').each(function () {
+                    let id = "#countryLabel" + this.id.split('country')[1]
+                    d3.select(id).style("display", "none");
+                    d3.select(id).on("mouseout",function(){
+                        d3.select(id).style("display", "none");
+                    })
+                    d3.select(id).classed("countryOffmouseout", false)
+                });
                 createFlow(iso, flows, direction);
                 appendFlowStat(d.properties.iso_a3, flows,countryData);
             });
@@ -263,7 +279,24 @@ $(document).ready(function() {
                 } else {
                     showStat(d, null,worldData,surveyData[d.properties.iso_a3]);
                 }
-
+                $('.countryLabelOffmouseout').each(function () {
+                    let id = "#" + this.id
+                    d3.select(id).style("display", "none");
+                    d3.select(id).on("mouseout",function(){
+                        d3.select(id).style("display", "none");
+                    })
+                    d3.select(id).classed("countryLabelOffmouseout", false)
+                });
+                
+                $('.countryOffmouseout').each(function () {
+                    let id = "#countryLabel" + this.id.split('country')[1]
+                    d3.select(id).style("display", "none");
+                    // console.log(id)
+                    d3.select(id).on("mouseout",function(){
+                        d3.select(id).style("display", "none");
+                    })
+                    d3.select(id).classed("countryOffmouseout", false)
+                });
                 // //add flow effect
                 // flow.selectAll("line").remove();
                 // createFlow(d.properties.iso_a3, flows);
@@ -293,12 +326,23 @@ $(document).ready(function() {
             .attr("height", function(d) {
                 return d.bbox.height;
             });
-
-
-
-
-
-
         initiateZoom();
     });
+
+    d3.select('.countryNameSourceFlow').on("mouseover",function(e){
+        console.log(e.target.id)
+        d3.select(e.target.id).style("fill","white")
+    })
+    d3.select('.countryNameSourceFlow').on("mouseout", function(e){
+        d3.select(e.target.id).style("fill","black")
+    })
 });
+
+
+// $('.country').mouseover(function(){
+//     $(this).style("display", "block");
+// });
+
+// $('.country').mouseout(function(){
+//     $(this).style("display", "none");
+// })
