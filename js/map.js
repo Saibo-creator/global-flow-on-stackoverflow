@@ -129,7 +129,9 @@ countryLabelGroup = svg.append("g").attr("id", "countryLabelGroup");
 var defs = svg.append('defs')
     .attr("id", "defs");
 
-
+//circles in periodic mouvement
+var subcircle = circle.append("g")
+    .attr("id", "subcircle");
 
 
 localStorage.setItem("direction","out");
@@ -145,9 +147,9 @@ $(document).ready(function() {
         worldData = countryData["WORLD"]
     });
 
-    //let use choose direction
-    $('#inward').on('click', function() { direction = 'in' })
-    $('#outward').on('click', function() { direction = 'out' })
+    // //let use choose direction(optional,not applied in this version)
+    // $('#inward').on('click', function() { direction = 'in' })
+    // $('#outward').on('click', function() { direction = 'out' })
 
 
 
@@ -217,7 +219,7 @@ $(document).ready(function() {
                 circle.selectAll("circle").remove();
                 var iso = d.properties.iso_a3;
                 createFlow(iso, flows, direction);
-                appendFlowStat(d.properties.iso_a3, flows,countryData);
+                appendFlowStat(d.properties.iso_a3, flows,countryData,direction);
             });
 
 
@@ -270,7 +272,7 @@ $(document).ready(function() {
                 circle.selectAll("circle").remove();
                 var iso = d.properties.iso_a3;
                 createFlow(iso, flows, direction);
-                appendFlowStat(d.properties.iso_a3, flows,countryData);
+                appendFlowStat(d.properties.iso_a3, flows,countryData,direction);
 
 
             });
