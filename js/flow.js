@@ -13,15 +13,17 @@ function showOff(labelId){
     }
 }
 
-function onFlowMouseOver(e,iso){
+function onFlowMouseOver(iso){
     return function(){
         d3.select("#countryLabel" + iso).select('text').style("fill", "#FFFAFF");
+        d3.select("#country" + iso).style("stroke","#fff").style("stroke-width","1")
     }
     
 }
-function onFlowMouseOut(e,iso){
+function onFlowMouseOut(iso){
     return function(){
         d3.select("#countryLabel" + iso).select('text').style("fill", "black");
+        d3.select("#country" + iso).style("stroke-width","0")
     }
    
 }
