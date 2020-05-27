@@ -255,6 +255,7 @@ $(document).ready(function() {
             })
             // add an onlcick action to zoom into clicked country
             .on("click", function(d, i) {
+                var direction = localStorage.getItem("direction");
                 d3.selectAll(".country").classed("country-on", false);
                 d3.select("#country" + d.properties.iso_a3).classed("country-on", true);
                 if (d.properties.iso_a3 in countryData) {
@@ -264,9 +265,12 @@ $(document).ready(function() {
                     showStat(d, null,worldData,surveyData[d.properties.iso_a3]);
                 }
 
-                // //add flow effect
-                // flow.selectAll("line").remove();
-                // createFlow(d.properties.iso_a3, flows);
+                //add flow effect (comment for test)
+                flow.selectAll("line").remove();
+                circle.selectAll("circle").remove();
+                var iso = d.properties.iso_a3;
+                createFlow(iso, flows, direction);
+                appendFlowStat(d.properties.iso_a3, flows,countryData);
 
 
             });
