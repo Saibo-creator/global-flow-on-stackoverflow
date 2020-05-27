@@ -1,15 +1,49 @@
 body {
     margin: 0;
-    background-color: #2A2C39;
+    background-color: rgba(42, 44, 57,1) !important;
     font-family: 'Yanone Kaffeesatz', sans-serif;
     font-weight: 200;
     font-size: 17px;
 }
 
+/* Navigation Settings */
+nav {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 5vh;
+    background: rgb(21, 25, 59);
+    text-align: center;
+    z-index: 100;
+}
+/* @media only screen and (max-width: 520px) {
+
+	nav li {
+		padding: 24px 4px;
+	}
+	nav li a {
+		font-size: 14px;
+	}
+} */
+
+nav li {
+	display: inline-block;
+	padding: 0.7rem 1.5rem;
+}
+
+nav li a {
+	color: #FFFAFF;
+	text-transform: uppercase;
+}
+nav li a:hover{
+    text-decoration: none;
+    color:#d6d2b5;
+}
 #map-holder {
     width: 75vw;
     height: 100vh;
-    background-color: #2A2C39;
+    /* background-color: #2A2C39; */
+    background-color:rgba(42, 44, 57,1);
 }
 #outward{
     margin-left: 0.5rem;
@@ -18,23 +52,24 @@ body {
     margin-left: 1.5rem;
 }
 #information-holder {
-    height: 100vh;
+    height: 95vh;
     width: 25vw;
-    background-color: rgba(42, 44, 57, 0.85);
+    /* background-color: rgba(42, 44, 57, 0.85); */
+    background-color:rgb(80, 80, 82);
     position: absolute;
-    top: 0;
+    top: 5vh;
     right: 0;
     z-index: 1;
     overflow-y: scroll;
     font-family: 'Times New Roman', Times, serif;
     font-size: 30;
 }
-
-#switch{
-    font-size: 1em;
-    line-height: 1;
-    margin-top:0.7rem;
+#no-info{
+    text-align: center;
+    font-size: x-large;
+    padding:1em 1.2em; 
 }
+
 /* #progress-bar-large{
     padding: left 1em;
 } */
@@ -77,12 +112,16 @@ body {
     width: 24vw;
 }
 #countryName-holder {
-    padding: 5%;
-    height: 12vh;
+    padding: 2.5%;
+    height: 10vh;
     text-align: center;
 }
 
-
+#switch{
+    font-size: 1em;
+    line-height: 1;
+    margin-top:0em;
+}
 #statistics-holder {
     /* margin: 2.5%; */
     margin-top: 1em;
@@ -94,7 +133,7 @@ body {
 }
 
 #progress-bar {
-    padding: 2.5%;
+    padding: 0em 1.2em;
     margin-left: 1em;
     width: 23vw;
     color: white;
@@ -105,7 +144,7 @@ body {
 .country-name {
     position: relative;
     text-align: center;
-    top: 15%;
+    top: 8%;
     color: white;
     font-size: xx-large;
     font-weight: 600;
@@ -123,7 +162,10 @@ body {
     margin-top: 1em;
     margin-bottom: 0px;
 }
-
+.hbar-title + p{
+    text-align: center;
+    color:white;
+}
 svg rect {
     fill: #2A2C39;
     /* map background colour */
@@ -322,4 +364,85 @@ svg rect {
     background: #fff;
     border: 1px, #fff;
     color: #000;
+}
+/* block info */
+.page_block{
+    position: absolute;
+    /* background-color: rgba(42, 44, 57); */
+    top: 10vh;
+    width:100vw;
+    text-align: center;
+}
+
+.block_title{
+    width: 100vw;
+    font-size: xxx-large !important;
+    font-weight: 600;
+    color: cornsilk;
+    /* margin-bottom: 1.5em; */
+    font-family: cursive;
+    text-align: center;
+}
+/* actract info */
+#abstract_block{
+    color: cornsilk;
+}
+#abstract_block .block_title{
+    margin-bottom: 1em;
+}
+.abstract_title{
+    font-size: xx-large !important;
+    font-weight: 400;
+    /* margin-top: 1.5em; */
+    /* margin-bottom: 1.5em; */
+    font-family: cursive;
+}
+#abstract_block div{
+    padding:0 8em;
+}
+#abstract_block div p{
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif !important;
+    /* font-weight: 400; */
+    text-align: justify;
+}
+#abstract_block ul{
+    list-style-type: square;
+    text-align: justify;
+}
+#abstract_block ul li{
+    font-family: 'Times New Roman', Times, serif !important;
+    font-size: large;
+}
+
+/* Team info */
+#team_block ul {
+    display: inline-block;
+    padding-inline-start: 0 !important;
+}
+#team_block li{
+    /* border: 1px solid black; */
+    width: 23vw;
+    height: 75vh;
+    display: inline-block;
+    margin:0 4em;
+    /* height: ; */
+}
+#team_block .block_title{
+    margin-bottom: 1.5em;
+}
+#team_block img {
+    width: 100%;
+    height: 50%;
+    border-radius: 50%;
+}
+#team_block p{
+    color: cornsilk;
+    font-size: x-large;
+    /* font-weight: 600; */
+    font-family: cursive;
+}
+
+.name{
+    margin-top: 1em;
 }

@@ -10,11 +10,20 @@
 </head>
 
 <body>
+    <nav>
+        <ul>
+              <li><a href="#">Abstract</a></li>
+              <li><a href="#">User-Dominated</a></li>
+              <li><a href="#">Questions & Answer</a></li>
+              <li><a href="team.html">Team</a></li>
+        </ul>
+   </nav>
+
     <div id="map-holder"></div>
     <div class="slidecontainer">
         <div class="slider">
             <div class="range">
-            <input type="range" min="0"     max="5" steps="1" value="0">
+            <input type="range" min="0" max="5" steps="1" value="0">
             </div>
             
             <ul class="range-labels">
@@ -38,7 +47,7 @@
             <p class="country-name" style="top:24%">Welcome to our website</p>
         </div>
         <div id="statistics-holder">
-            <p style="font-size: large;">This website aims to show you the global knowledge flow on Stackoverflow.</p>
+            <p style="font-size: large;">This page aims to show you the global knowledge flow on Stackoverflow.</p>
             <p style="font-size: large;">Click the Country on the map and we will show you some information about this country.</p>
             <div>
                 <button type="button" class="btn btn-primary btn-lg" id="outward">Outward Direction</button>
@@ -51,7 +60,7 @@
         <div id="progress-bar-large">
             <p class="hbar-title">Worldwide Stackoverflow User Community Size Index</p>
             <div id="progress-bar">
-                <div style="margin-top:30px;margin-bottom: 0 px; ">United States: 529504</div>
+                <div style="margin-top:30px;margin-bottom: 0 px; "><i class="unitedstates"></i>United States: 529504</div>
                 <div class="progress progress-striped">
                     <div id="usa" class="progress-bar-animated progress-bar-striped bg-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                     </div>
@@ -92,7 +101,7 @@
     <script src="js/markers.js"></script>
     <script src="js/slider.js"></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <script src="https://use.fontawesome.com/01116d894f.js"></script>
+    <script src="https://kit.fontawesome.com/12b7ed20a5.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
