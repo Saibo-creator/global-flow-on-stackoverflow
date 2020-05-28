@@ -181,7 +181,7 @@ nav li a:hover{
 
 /* map block */
 #map_block{
-    position: absolute;
+    position: relative;
 }
 /*map part*/
 #map-holder {
@@ -251,7 +251,7 @@ nav li a:hover{
 } */
 /*sidebar */
 #information-holder {
-    padding-top: 5vh;
+    /* padding-top: 5vh; */
     float:right;
     display:inline-block;
     height: 95vh;
@@ -537,7 +537,7 @@ svg rect {
 /*color bar*/
 #colorBar{
     position: absolute;
-    top:63%;
+    top:60%;
     height:35vh;
     width: 10vw;
     /* border:1px solid red; */
