@@ -38,6 +38,7 @@ function createFlow(iso, flows, direction) {
     $('.countryLabelOffmouseout').each(function () {
         let id = "#" + this.id
         d3.select(id).select('text').classed("countryNameSourceFlow", false)
+        d3.select(id).select('text').style("fill", null);
         d3.select(id).select('text').classed("countryName", true)
         d3.select(id).classed("countryLabelOffmouseout", false)
         
