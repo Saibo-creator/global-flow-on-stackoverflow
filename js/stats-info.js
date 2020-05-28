@@ -3,14 +3,21 @@ function showStat(c, d,worldData,surveyData) {
     var classes=[(c.properties.name.toLowerCase()),'flag']
     $("#country-flag").addClass(classes.join(" "));
     $('#countryName-holder').append('<button type="button" class="btn btn-primary btn-lg" id="switch">Switch Direction</button>');
-    $('#switch').on('click', function() { localStorage.setItem("direction", switch_in_out(localStorage.getItem("direction")));});
-    // 获取值
+    $('#switch').on('click', function() { 
+        direction=switch_in_out(direction);
+        //         flows.sort(compareValues('count', order = 'desc'));
+        //add flow effect (comment for test)
+        flow.selectAll("line").remove();
+        circle.selectAll("circle").remove();
+        createFlow(iso, flows, direction);
+        //appendFlowStat
+        console.log(direction)
+        appendFlowStat(iso, flows, global.countryData, direction);});
 
     function switch_in_out(state) {
         return (state=='in' ? 'out' : 'in');
     }
 
-    direc = localStorage.getItem("direction");
     var country_name = c.properties.name
     if (d != null) {
         $('#statistics-holder').html('<div class=\"country-statistic\">'+

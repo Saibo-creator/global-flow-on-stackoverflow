@@ -132,10 +132,18 @@ var defs = svg.append('defs')
 
 
 
-localStorage.setItem("direction", "out");
+var direction="out";
+var iso='SUI';
 
 var countries
 var surveyData = {}
+
+
+var global={}
+
+$.getJSON("data/country_data.json", function(data) {
+    global.countryData = data
+});
 
 $(document).ready(function() {
     //get country data
@@ -202,7 +210,6 @@ $(document).ready(function() {
             })
             // add an onclick action to zoom into clicked country
             .on("click", function(d, i) {
-                let direction = localStorage.getItem("direction");
 
                 d3.selectAll(".country").classed("country-on", false);
                 d3.select(this).classed("country-on", true);
@@ -215,9 +222,9 @@ $(document).ready(function() {
                 //add flow effect (comment for test)
                 flow.selectAll("line").remove();
                 circle.selectAll("circle").remove();
-                let iso = d.properties.iso_a3;
+                iso = d.properties.iso_a3;
                 createFlow(iso, flows, direction);
-                appendFlowStat(d.properties.iso_a3, flows, countryData);
+                appendFlowStat(iso, flows, countryData);
             });
 
 

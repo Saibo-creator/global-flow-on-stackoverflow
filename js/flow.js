@@ -58,12 +58,12 @@ function createFlow(iso, flows, direction) {
     //flow mouvement start state
     if (direction == "out") {
 
-        flows = flows.filter(function(v) { return v.ques_owner_country == iso }).slice(0, 20);
+        flows = flows.filter(function(v) { return v.ans_owner_country == iso }).slice(0, 20);
 
         for (var i = 0; i < flows.length; i++) {
-            iso = flows[i].ans_owner_country;
+            iso = flows[i].ques_owner_country;
             
-            if (iso != flows[i].ques_owner_country) {
+            if (iso != flows[i].ans_owner_country) {
                 d3.select("#countryLabel" + iso).select('text').attr('class', 'countryNameSourceFlow');
 
                 d3.select("#countryLabel" + iso).on("mouseout",onFlowMouseOut(iso))
@@ -80,11 +80,11 @@ function createFlow(iso, flows, direction) {
 
     } else if (direction == "in") {
 
-        flows = flows.filter(function(v) { return v.ans_owner_country == iso }).slice(0, 20);
+        flows = flows.filter(function(v) { return v.ques_owner_country == iso }).slice(0, 20);
 
         for (var i = 0; i < flows.length; i++) {
-            iso = flows[i].ques_owner_country;
-            if (iso != flows[i].ans_owner_country) {
+            iso = flows[i].ans_owner_country;
+            if (iso != flows[i].ques_owner_country) {
                 d3.select("#countryLabel" + iso).select('text').attr('class', 'countryNameSourceFlow');
 
                 d3.select("#countryLabel" + iso).on("mouseout",onFlowMouseOut(iso))
