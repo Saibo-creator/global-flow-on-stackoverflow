@@ -224,7 +224,7 @@ $(document).ready(function() {
                 circle.selectAll("circle").remove();
                 iso = d.properties.iso_a3;
                 createFlow(iso, flows, direction);
-                appendFlowStat(iso, flows, countryData);
+                appendFlowStat(iso, flows, countryData,direction);
             });
 
 

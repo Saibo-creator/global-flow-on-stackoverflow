@@ -99,43 +99,44 @@ function showStat(c, d,worldData,surveyData) {
 
 
 
-function appendFlowStat(iso, flows,countryData ) {
-    flows = flows.filter(function(v) { return v.ans_owner_country == iso; }).slice(0, 20);
-    if (flows != null) {
-        // console.log(flows)
-        // $('#statistics-holder').append("<p>" + flows[0].ans_owner_country +
-        //     "'s top20 most conneccetd user communities are(in descending order):</p> ");
-        // flows.forEach(function(flow, i) {
-        //     $('#statistics-holder').append(flow.ques_owner_country, ', ');
+function appendFlowStat(iso, flows,countryData,direction ) {
+  if (direction == 'in') { flows = flows.filter(function(v) { return v.ques_owner_country == iso; }).slice(0, 20); } else if (direction == 'out') { flows = flows.filter(function(v) { return v.ans_owner_country == iso; }).slice(0, 20); }
 
-        // });
-        // $('#statistics-holder').append('</p>' + '<br>');
-        // $('#statistics-holder').append();
+    if (flows.length > 0) {
 
-        $('#progress-bar-large').html('<p class="hbar-title">Top5 flows</p><p>(proportion to the largest flow)</p>');
+        $('#progress-bar-large').html('<div id="progress-bar-large"><p class="hbar-title">Top5 flows</p><p>(porportion to the largest flow)</p>');
         $('#progress-bar-large').append('<div id="progress-bar">');
-        // console.log(flows[0])
-        // console.log(flows)
+
         largest_flow_count = flows[0].count;
         progress_bar_class = ["progress-bar progress-bar-animated progress-bar-striped", "progress-bar progress-bar-animated progress-bar-striped bg-success", "progress-bar progress-bar-animated progress-bar-striped bg-info", "progress-bar progress-bar-animated progress-bar-striped bg-warning", "progress-bar progress-bar-animated progress-bar-striped bg-danger"]
         flows.forEach(function(flow, i) {
             if (i <= 4) {
-                $('#progress-bar').append('<div style="margin-top:20px;margin-bottom: 0 px; "><i id="country-flow-flag-'+ flow.ques_owner_country +'" ></i> ' + flow.ques_owner_country + ':&nbsp;&nbsp;' + flow.count + '</div>')
-                var country_name = countryData[flow.ques_owner_country].Country
-                // console.log(country_name)
-                var classes=[(country_name.toLowerCase()),'flag']
-                $("#country-flow-flag-"+flow.ques_owner_country).addClass(classes.join(" "));
+                if (direction == 'in') {
+                    $('#progress-bar').append('<div style="margin-top:20px;margin-bottom: 0 px; "><i id="country-flow-flag-' + flow.ans_owner_country + '" ></i> ' + flow.ans_owner_country + ':&nbsp;&nbsp;' + flow.count + '</div>');
+                    var country_name = countryData[flow.ans_owner_country].Country;
+                    // console.log(country_name)
+                    var classes = [(country_name.toLowerCase()), 'flag'];
+                    $("#country-flow-flag-" + flow.ans_owner_country).addClass(classes.join(" "));
+                } else if (direction == 'out') {
+
+                    $('#progress-bar').append('<div style="margin-top:20px;margin-bottom: 0 px; "><i id="country-flow-flag-' + flow.ques_owner_country + '" ></i> ' + flow.ques_owner_country + ':&nbsp;&nbsp;' + flow.count + '</div>');
+                    var country_name = countryData[flow.ques_owner_country].Country;
+                    // console.log(country_name)
+                    var classes = [(country_name.toLowerCase()), 'flag'];
+                    $("#country-flow-flag-" + flow.ques_owner_country).addClass(classes.join(" "));
+                }
+
+
 
                 $('#progress-bar').append('<div class="progress progress-striped active">' +
-                    '<div ' + 'id=' + i + ' role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:' + "0%;>"+
-                    '<span class="sr-only">'+(flow.count / largest_flow_count * 100).toFixed(1) + '%'+'</span>' +
+                    '<div ' + 'id=' + i + ' role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:' + "0%;>" +
+                    '<span class="sr-only">' + (flow.count / largest_flow_count * 100).toFixed(1) + '%' + '</span>' +
                     '</div>' +
                     '</div>');
                 $('#' + i).addClass(progress_bar_class[i]);
-                $('#' + i).animate({width: (flow.count / largest_flow_count * 100).toFixed(1) + '%'  }, 1000);
+                $('#' + i).animate({ width: (flow.count / largest_flow_count * 100).toFixed(1) + '%' }, 1000);
 
             }
-
 
         });
 
@@ -144,7 +145,19 @@ function appendFlowStat(iso, flows,countryData ) {
 
 
 
-    } else {
-        $('#progress-bar-large').html("<div id=\"no-info\"><i class=\"fas fa-exclamation-circle\" style=\"color:#ff6666\"></i>&nbsp;&nbsp;There is no flow information about this country.</div>")
+    } else   {
+        $('#progress-bar-large').html('<div id="progress-bar-large"><p class="hbar-title">Flow Information</p>');
+        $('#progress-bar-large').append('<div id="progress-bar">');
+        if (direction == 'out') {
+            $('#progress-bar').html(
+                `<div class="alert alert-primary" role="alert">Programmers in Chad have a relatively low activity rate, \
+                thus no evident Q&A exchange flow with other countries was detected. An assumption would be the developers come \
+                to Stack Overflow only to find answers to their questions, while not participate in the community by asking, \
+                answering, voting for, or commenting on questions.  Hopefully, we will see incremental improvement in this \
+                area year over year in terms of .</div></div>`);
+
+        }
+
+
     }
 }
