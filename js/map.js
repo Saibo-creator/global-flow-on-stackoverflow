@@ -274,9 +274,12 @@ $(document).ready(function() {
                 } else {
                     showStat(d, null, worldData, surveyData[d.properties.iso_a3]);
                 }
-                // //add flow effect
-                // flow.selectAll("line").remove();
-                // createFlow(d.properties.iso_a3, flows);
+                //add flow effect (comment for test)
+                flow.selectAll("line").remove();
+                circle.selectAll("circle").remove();
+                iso = d.properties.iso_a3;
+                createFlow(iso, flows, direction);
+                appendFlowStat(iso, flows, countryData,direction);
 
 
             });
