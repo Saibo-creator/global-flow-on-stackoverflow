@@ -1,27 +1,25 @@
 function showStat(c, d, worldData, surveyData) {
     $('#countryName-holder').html('<i id="country-flag" ></i> <p class=\'country-name\'>' + c.properties.name + '</p>');
-    var classes = [(c.properties.name.toLowerCase()), 'flag']
+    var classes = [(c.properties.name.toLowerCase()), 'flag'];
     $("#country-flag").addClass(classes.join(" "));
     $('#countryName-holder').append('<button type="button" class="btn btn-primary btn-lg" id="switch">Switch Direction</button>');
     $('#switch').on('click', function() {
-//         flows.sort(compareValues('count', order = 'desc'));
-        localStorage.setItem("direction", switch_in_out(localStorage.getItem("direction")));
-
-
-
-
-
+        //         flows.sort(compareValues('count', order = 'desc'));
+        direction = switch_in_out(direction);
+        //add flow effect (comment for test)
+        flow.selectAll("line").remove();
+        circle.selectAll("circle").remove();
+        createFlow(iso, flows, direction);
+        //appendFlowStat
+        appendFlowStat(iso, flows, global.countryData, direction);
     });
+
     // 获取值
 
     function switch_in_out(state) {
         return (state == 'in' ? 'out' : 'in');
     }
-
-    direc = localStorage.getItem("direction");
-    console.log(direc);
-    console.log(surveyData)
-    var country_name = c.properties.name
+    var country_name = c.properties.name;
     if (d != null) {
         $('#statistics-holder').html('<div class=\"country-statistic\">' +
             '<div class=\"user_container\"> <span class=\"num_indicator\"><i class=\"fa fa-users\" aria-hidden=\"true\" style=\"color:white\"></i>&nbsp;&nbsp;Users</span><span class=\"num\">' + d['user'] + '</span></div>' +
@@ -31,11 +29,11 @@ function showStat(c, d, worldData, surveyData) {
             '</div>' +
             '</div>'
         );
-        console.log(surveyData == null)
+
         if (surveyData != null) {
-            $('#statistics-holder').append("<div id=\"userChangeLineChart\" ></div>")
-            chartHeight = $('#userChangeLineChart').height()
-            chartWidth = $('#userChangeLineChart').width()
+            $('#statistics-holder').append("<div id=\"userChangeLineChart\" ></div>");
+            chartHeight = $('#userChangeLineChart').height();
+            chartWidth = $('#userChangeLineChart').width();
             var chart = new CanvasJS.Chart("userChangeLineChart", {
                 animationEnabled: true,
                 width: chartWidth,
@@ -43,7 +41,7 @@ function showStat(c, d, worldData, surveyData) {
                 // theme: "light2",
                 backgroundColor: null,
                 title: {
-                    text: "Users' Population Over Years",
+                    text: "Stack Overflow Community Size Scale",
                     fontSize: 25,
                     fontWeight: "normal",
                     fontFamily: "cursive",
@@ -103,7 +101,7 @@ function showStat(c, d, worldData, surveyData) {
 function appendFlowStat(iso, flows, countryData, direction) {
     if (direction == 'in') { flows = flows.filter(function(v) { return v.ques_owner_country == iso; }).slice(0, 20); } else if (direction == 'out') { flows = flows.filter(function(v) { return v.ans_owner_country == iso; }).slice(0, 20); }
 
-    if (flows != null) {
+    if (flows.length > 0) {
         $('#progress-bar-large').html('<div id="progress-bar-large"><p class="hbar-title">Top5 flows</p><p>(porportion to the largest flow)</p>');
         $('#progress-bar-large').append('<div id="progress-bar">');
         largest_flow_count = flows[0].count;
@@ -111,41 +109,54 @@ function appendFlowStat(iso, flows, countryData, direction) {
 
         flows.forEach(function(flow, i) {
             if (i <= 4) {
-                  if (direction == 'in') {
-                    $('#progress-bar').append('<div style="margin-top:20px;margin-bottom: 0 px; "><i id="country-flow-flag-' + flow.ans_owner_country + '" ></i> ' + flow.ans_owner_country + ':&nbsp;&nbsp;' + flow.count + '</div>')
-                    var country_name = countryData[flow.ans_owner_country].Country
+                if (direction == 'in') {
+                    $('#progress-bar').append('<div style="margin-top:20px;margin-bottom: 0 px; "><i id="country-flow-flag-' + flow.ans_owner_country + '" ></i> ' + flow.ans_owner_country + ':&nbsp;&nbsp;' + flow.count + '</div>');
+                    var country_name = countryData[flow.ans_owner_country].Country;
                     // console.log(country_name)
-                    var classes = [(country_name.toLowerCase()), 'flag']
+                    var classes = [(country_name.toLowerCase()), 'flag'];
                     $("#country-flow-flag-" + flow.ans_owner_country).addClass(classes.join(" "));
                 } else if (direction == 'out') {
 
-                    $('#progress-bar').append('<div style="margin-top:20px;margin-bottom: 0 px; "><i id="country-flow-flag-' + flow.ques_owner_country + '" ></i> ' + flow.ques_owner_country + ':&nbsp;&nbsp;' + flow.count + '</div>')
-                    var country_name = countryData[flow.ques_owner_country].Country
+                    $('#progress-bar').append('<div style="margin-top:20px;margin-bottom: 0 px; "><i id="country-flow-flag-' + flow.ques_owner_country + '" ></i> ' + flow.ques_owner_country + ':&nbsp;&nbsp;' + flow.count + '</div>');
+                    var country_name = countryData[flow.ques_owner_country].Country;
                     // console.log(country_name)
-                    var classes = [(country_name.toLowerCase()), 'flag']
+                    var classes = [(country_name.toLowerCase()), 'flag'];
                     $("#country-flow-flag-" + flow.ques_owner_country).addClass(classes.join(" "));
                 }
 
+
+
+                $('#progress-bar').append('<div class="progress progress-striped active">' +
+                    '<div ' + 'id=' + i + ' role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:' + "0%;>" +
+                    '<span class="sr-only">' + (flow.count / largest_flow_count * 100).toFixed(1) + '%' + '</span>' +
+                    '</div>' +
+                    '</div>');
+                $('#' + i).addClass(progress_bar_class[i]);
+                $('#' + i).animate({ width: (flow.count / largest_flow_count * 100).toFixed(1) + '%' }, 1000);
+
             }
-
-            $('#progress-bar').append('<div class="progress progress-striped active">' +
-                '<div ' + 'id=' + i + ' role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:' + "0%;>" +
-                '<span class="sr-only">' + (flow.count / largest_flow_count * 100).toFixed(1) + '%' + '</span>' +
-                '</div>' +
-                '</div>');
-            $('#' + i).addClass(progress_bar_class[i]);
-            $('#' + i).animate({ width: (flow.count / largest_flow_count * 100).toFixed(1) + '%' }, 1000);
-
-
 
         });
 
 
 
+    } else //case when country has no flow at all
+    {
+        $('#progress-bar-large').html('<div id="progress-bar-large"><p class="hbar-title">Flow Information</p>');
+        $('#progress-bar-large').append('<div id="progress-bar">');
+        if (direction == 'out') {
+            $('#progress-bar').html(
+                `<div class="alert alert-primary" role="alert">Programmers in Chad have a relatively low activity rate, \
+                thus no evident Q&A exchange flow with other countries was detected. An assumption would be the developers come \
+                to Stack Overflow only to find answers to their questions, while not participate in the community by asking, \
+                answering, voting for, or commenting on questions.  Hopefully, we will see incremental improvement in this \
+                area year over year in terms of .</div></div>`);
+
+        }
 
 
 
-    } else {
-        $('#statistics-holder').html("There is no information for this country.");
+
+        // $('#statistics-holder').html("There is no information for this country.");
     }
 }

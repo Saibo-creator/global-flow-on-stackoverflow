@@ -133,11 +133,20 @@ var defs = svg.append('defs')
 var subcircle = circle.append("g")
     .attr("id", "subcircle");
 
+//direction is a global variable
+var direction="out";
 
-localStorage.setItem("direction","out");
+// ISO is a global variable 
+var iso = 'SUI'
 
 let countries
 let surveyData = {}
+
+var global={}
+
+$.getJSON("data/country_data.json", function(data) {
+    global.countryData = data
+});
 
 $(document).ready(function() {
     //get country data
@@ -150,7 +159,7 @@ $(document).ready(function() {
     // //let use choose direction(optional,not applied in this version)
     // $('#inward').on('click', function() { direction = 'in' })
     // $('#outward').on('click', function() { direction = 'out' })
-
+    console.log(countryData)
 
 
     d3.csv("./data/flow_betw_country.csv", function(data) {
@@ -204,7 +213,6 @@ $(document).ready(function() {
             })
             // add an onclick action to zoom into clicked country
             .on("click", function(d, i) {
-                var direction = localStorage.getItem("direction");
 
                 d3.selectAll(".country").classed("country-on", false);
                 d3.select(this).classed("country-on", true);
@@ -217,9 +225,9 @@ $(document).ready(function() {
                 //add flow effect (comment for test)
                 flow.selectAll("line").remove();
                 circle.selectAll("circle").remove();
-                var iso = d.properties.iso_a3;
+                iso = d.properties.iso_a3;
                 createFlow(iso, flows, direction);
-                appendFlowStat(d.properties.iso_a3, flows,countryData,direction);
+                appendFlowStat(iso, flows,countryData,direction);
             });
 
 
@@ -236,8 +244,12 @@ $(document).ready(function() {
             .attr("id", function(d) {
                 return "countryLabel" + d.properties.iso_a3;
             })
-            .attr("transform", function(d) {
-                if (d.properties.iso_a3 == "USA") {
+            .attr("transform", function(d) {                
+                if (d.properties.iso_a3 == "FRA") {
+                    return (
+                        "translate(" + (path.centroid(d)[0] +50) + "," + (path.centroid(d)[1] - 50) + ")"
+                    );
+                }else if (d.properties.iso_a3 == "USA") {
                     return (
                         "translate(" + (path.centroid(d)[0] + 100) + "," + (path.centroid(d)[1] + 50) + ")"
                     );
@@ -257,7 +269,6 @@ $(document).ready(function() {
             })
             // add an onlcick action to zoom into clicked country
             .on("click", function(d, i) {
-                var direction = localStorage.getItem("direction");
                 d3.selectAll(".country").classed("country-on", false);
                 d3.select("#country" + d.properties.iso_a3).classed("country-on", true);
                 if (d.properties.iso_a3 in countryData) {
