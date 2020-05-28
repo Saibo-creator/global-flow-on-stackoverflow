@@ -38,8 +38,12 @@ function hashCode2(str){
  * 
  */
 function getHeatMapColor(scale){
-    var START_R = 0, START_G = 255, START_B = 0;
-    var END_R = 255, END_G = 0, END_B = 0;
+    // console.log(scale)
+    if (!isFinite(scale) || scale < 0) {
+        scale = 0
+    }
+    var START_R = 255, START_G = 255, START_B = 255;
+    var END_R = 6*16+5, END_G = 0, END_B = 16;
     r = START_R * (1-scale) + END_R * (scale);
     g = START_G * (1-scale) + END_G * (scale);
     b = START_B * (1-scale) + END_B * (scale);
