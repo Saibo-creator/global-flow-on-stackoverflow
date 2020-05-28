@@ -6,91 +6,103 @@
     <title>global-flow-on-stackoverflow</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/flag.min.css" >
+    <link rel="stylesheet" href="css/flag.min.css">
 </head>
 
-<body>
+<body class="abstract">
     <nav>
         <ul>
             <li><a href="#">Abstract</a></li>
             <li><a href="map.html">Users / Q&A Map</a></li>
             <li><a href="team.html">Team</a></li>
         </ul>
-   </nav>
-
-   <section id="abstract_block" class="page_block">
-        <p class="block_title">Abstract</p>
-        <div>
+    </nav>
+    <div style="margin: auto;">
+        <h1 class="ml1">
+            <span>
+                <span class="line line1"></span>
+                <span class="letters">KNOWLEDGE FLOW ON STACK OVERFLOW</span>
+                <span class="line line2"></span>
+            </span>
+        </h1>
+    </div>
+    <section id="abstract_block" class="page_block">
+        <div >
             <p class="abstract_title"> About this Website</p>
-            <p>
+            <p> A programmer's daily life is naver alone! A computer ,an IDE and <b>Stckoverflow!</b>
+                You must have experienced the joy while a bug which torched you during sevevral hours fianlly resolved by two lines of code by someone from this magical programming Q&A website.<br>
+                Have you ever wondered who are actully answering your questions ? <br>
+                Are they in the same country as you or you are maybe in two poles of the Earth?<br>
+                Are you curious about whether your country's people are more engaged in answering or asking questions?<br>
                 In this site, we visualize the Question and Answer country origin from Stackoverflow as a map. <br><br>
                 As one of the largest website for knowledge sharing among developers, we believe that we could gain some valuable insight in the global knowledge economy by examining the questions and and answers from Stackoverflow. <br> <br>
                 We define knowledge flow between countries by the number of questions asked by users from one countries, by users of another country. <br><br>
                 In the map below, you can find information about the knowledge flow between different countries among the world.<br> <br>
-
-
-                <b><I>Start by selecting a country you want to know more.</I>
-                </b>
+                
+                 <div class="alert alert-warning" role="alert">  Start by selecting a country you want to know more.</div>
+                
             </p>
         </div>
         <div>
             <p class="abstract_title"> DataSet Description</p>
-            <p>
-                Stackoverflow is a knowledge sharing site for professional and enthusiast programmers. 
-                In the site, user can freely post questions and answers. 
+            <div class="alert alert-info" role="alert">
+                Stackoverflow is a knowledge sharing site for professional and enthusiast programmers.
+                In the site, user can freely post questions and answers.
                 Since its founding in 2008, it has quickly grown to become a huge community with currently over 50 million active monthly users from all around the world. <br><br>
                 We want to explore this community, discover the relationship between users’ country and posts (including questions and answers) and dig out the flow of knowledge between regions. <br><br>
                 Our data is extracted from Google BigQuery Stack Overflow using SQL. The data includes:
-            </p>
-                
-                <ul>
-                    <li>Users data: 
-                        <ul>
-                            <li>Country of residence</li>
-                            <li>ID</li>
-                            <li>Name</li>
-                            <li>Account created date</li>
-                            <li>etc..</li>
-                        </ul>
-                    </li>
-                    <li>Questions data (2016 - 2019):
-                        <ul>
-                            <li>Question ID</li>
-                            <li>Answer count</li>
-                            <li>Created time</li>
-                            <li>Score</li>
-                            <li>Owner's user ID</li>
-                            <li>etc..</li>
-                        </ul> 
-                    </li>
-                    <li>Answers data (2016 - 2019):
-                        <ul>
-                            <li>Answer ID</li>
-                            <li>Created time</li>
-                            <li>Parent (question) id</li>
-                            <li>Score</li>
-                            <li>Owner's user ID</li>
-                            <li>etc..</li>
-                        </ul>
-                    </li>
-                </ul>
+            </div>
+            <ul class="row">
+                <li class="column">
+                    Users data:
+                    <ul>
+                        <li>Country of residence</li>
+                        <li>ID</li>
+                        <li>Name</li>
+                        <li>Account created date</li>
+                        <li>etc..</li>
+                    </ul>
+                </li>
+                <li class="column">
+                    Questions data (2016 - 2019):
+                    <ul>
+                        <li>Question ID</li>
+                        <li>Answer count</li>
+                        <li>Created time</li>
+                        <li>Score</li>
+                        <li>Owner's user ID</li>
+                        <li>etc..</li>
+                    </ul>
+                </li>
+                <li class="column">
+                    Answers data (2016 - 2019):
+                    <ul>
+                        <li>Answer ID</li>
+                        <li>Created time</li>
+                        <li>Parent (question) id</li>
+                        <li>Score</li>
+                        <li>Owner's user ID</li>
+                        <li>etc..</li>
+                    </ul>
+                </li>
+            </ul>
         </div>
         <div class="arrow">
             <!-- <div style="font-family: cursive">Go to map</div> -->
             <!-- <span></span> -->
             <a href="map.html">
-            <span></span>
-            <span></span>
+                <span></span>
+                <span></span>
             </a>
         </div>
     </section>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/12b7ed20a5.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="js/abstract-header.js"></script>
 </body>
 
 </html>

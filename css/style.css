@@ -6,6 +6,12 @@ body {
     font-size: 17px;
 }
 
+body.abstract {
+    background-color: rgb(144, 155, 172);
+    margin: 'auto';
+    text-align: center;
+}
+
 /* Navigation Settings */
 nav {
 	position: fixed;
@@ -96,6 +102,19 @@ nav li a:hover{
     font-family: 'Times New Roman', Times, serif !important;
     font-size: large;
 }
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 25%;
+}
+.column li{
+    list-style-type: circle;
+}
+
+
 .arrow{
     cursor: pointer;
     position: absolute;
@@ -609,3 +628,51 @@ svg rect {
 .name{
     margin-top: 1em;
 }
+
+
+
+
+/*styles for abstract page */
+.ml1 {
+    position: relative;
+    top: 10vh;
+    margin-bottom: 10vh;
+    font-weight: 900;
+    font-size: 3.5em;
+    margin: "auto" ! important;
+}
+
+.ml1 .letter {
+    font-family: cursive;
+    color: rgb(256, 256, 256);
+    display: inline-block;
+    position: center;
+    line-height: 1em;
+
+}
+
+.ml1 .text-wrapper {
+    display: inline-block;
+    padding-top: 0.1em;
+    padding-right: 0.05em;
+    padding-bottom: 0.15em;
+}
+
+.ml1 .line {
+    opacity: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: #fff;
+    transform-origin: 0 0;
+}
+
+.ml1 .line1 {
+    top: 0;
+}
+
+.ml1 .line2 {
+    bottom: 0;
+}
+
+/*styles for abstract page finished*/
