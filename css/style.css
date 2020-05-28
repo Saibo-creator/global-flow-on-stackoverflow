@@ -74,7 +74,9 @@ nav li a:hover{
     position: relative;
     color: white
     
-    
+}
+#animated_title{
+    height:18.5vh;
 }
 #abstract_block .block_title{
     margin-bottom: 1em;
