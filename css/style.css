@@ -71,7 +71,7 @@ nav li a:hover{
 /* actract info */
 #abstract_block{
     position: relative;
-    color: cornsilk;
+    color: white
     
     
 }
@@ -84,6 +84,9 @@ nav li a:hover{
     /* margin-top: 1.5em; */
     /* margin-bottom: 1.5em; */
     font-family: cursive;
+}
+.ml1{
+    top:5vh;
 }
 #abstract_block div{
     padding:0 8em;
@@ -637,7 +640,7 @@ svg rect {
     border-radius: 50%;
 }
 #team_block p{
-    color: cornsilk;
+    color: white;
     font-size: x-large;
     /* font-weight: 600; */
     font-family: cursive;
