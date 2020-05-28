@@ -34,6 +34,7 @@ function onFlowMouseOut(iso){
 function createFlow(iso, flows, direction) {
     //clear last state
     let relatedLabelid = []
+    largest_flow_count = flows[0].count;
     $('.countryLabelOffmouseout').each(function () {
         let id = "#" + this.id
         d3.select(id).select('text').classed("countryNameSourceFlow", false)
@@ -60,6 +61,16 @@ function createFlow(iso, flows, direction) {
 
         flows = flows.filter(function(v) { return v.ans_owner_country == iso }).slice(0, 20);
 
+    large_circles.selectAll("circle")
+        .data(flows)
+        .enter()
+        .append("circle")
+        .attr('class', 'large_circle')
+        .attr("cx", d => projection([d.long_ques, d.lat_ques])[0])
+        .attr("cy", d => projection([d.long_ques, d.lat_ques])[1])
+        .attr('r', function(d,i){return 80/Math.sqrt(i)})
+        .attr('fill-opacity',0.8)
+
         for (var i = 0; i < flows.length; i++) {
             iso = flows[i].ques_owner_country;
             
@@ -81,6 +92,16 @@ function createFlow(iso, flows, direction) {
     } else if (direction == "in") {
 
         flows = flows.filter(function(v) { return v.ques_owner_country == iso }).slice(0, 20);
+
+    large_circles.selectAll("circle")
+        .data(flows)
+        .enter()
+        .append("circle")
+        .attr('class', 'large_circle')
+        .attr("cx", d => projection([d.long_ans, d.lat_ans])[0])
+        .attr("cy", d => projection([d.long_ans, d.lat_ans])[1])
+        .attr('r', function(d,i){return 80/Math.sqrt(i)})
+        .attr('fill-opacity',0.8)
 
         for (var i = 0; i < flows.length; i++) {
             iso = flows[i].ans_owner_country;
@@ -116,7 +137,7 @@ function createFlow(iso, flows, direction) {
 
 
     //circles intial state
-    circle.selectAll("circle")
+    mid_circles.selectAll("circle")
         .data(flows)
         .enter()
         .append("circle")
@@ -145,7 +166,7 @@ function createFlow(iso, flows, direction) {
         });
 
     //circles final sate
-    circle.selectAll("circle")
+    mid_circles.selectAll("circle")
         .data(flows)
         .transition()
         .duration(1000)

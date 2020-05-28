@@ -120,6 +120,12 @@ var flow = svg.append('g')
 var circle = svg.append("g")
     .attr("id", "circle");
 
+var large_circles = circle.append('g')
+    .attr('id', 'large_circles');
+
+var mid_circles = circle.append('g')
+    .attr('id', 'mid_circles');
+
 var barChart = svg.append("g")
     .attr("id", "barChart");
 

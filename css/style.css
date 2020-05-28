@@ -160,7 +160,7 @@ nav li a:hover{
 .country {
     stroke: rgb(107, 161, 206);
     /* country border colour */
-    stroke-width: 1;
+    stroke-width: 0;
     /* country border width */
 }
 
@@ -335,6 +335,13 @@ svg rect {
 .circle {
     color: #6666ff;
     fill: #6666ff;
+
+}
+
+
+.large_circle {
+    color: rgba(171,205,239);
+    fill: rgba(171,205,239);
 
 }
 

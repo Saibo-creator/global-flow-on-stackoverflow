@@ -65,5 +65,6 @@ function getCountryStyleString(surveyData, d, i, year) {
     }
     colorFloat = Math.log(num) / max;
     colorString = getHeatMapColor(colorFloat);
-    return "fill:" + colorString + ";"
+    if(num!=0) {return "fill:" + colorString + ";"}
+    else{return "fill:" + colorString +";"+" stroke-width:1 !important ;"}
 }
