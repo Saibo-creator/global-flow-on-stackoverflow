@@ -484,7 +484,7 @@ svg rect {
 /*color bar*/
 #colorBar{
     position: absolute;
-    top:65%;
+    top:63%;
     height:35vh;
     width: 10vw;
     /* border:1px solid red; */
