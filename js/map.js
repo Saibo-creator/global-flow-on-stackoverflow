@@ -14,7 +14,7 @@ var infoWidth = $('body').width();
 var projection = d3.geoEquirectangular()
     .center([0, 15]) // set centre to further North as we are cropping more off bottom of map
     .scale([w / (2 * Math.PI)]) // scale to fit group width
-    .translate([w  / 2, h / 2]); // ensure centred in group
+    .translate([w / 2, h / 2]); // ensure centred in group
 
 // Define map path
 var path = d3.geoPath()
@@ -132,7 +132,7 @@ var defs = svg.append('defs')
 
 
 
-localStorage.setItem("direction","out");
+localStorage.setItem("direction", "out");
 
 var countries
 var surveyData = {}
@@ -162,8 +162,8 @@ $(document).ready(function() {
     });
 
     d3.csv("./data/survey_particp_14_19.csv", function(data) {
-        data.forEach(function(d) { 
-            surveyData[d.iso3] = [parseInt(d['2014']),parseInt(d['2015']),parseInt(d['2016']),parseInt(d['2017']),parseInt(d['2018']),parseInt(d['2019'])]
+        data.forEach(function(d) {
+            surveyData[d.iso3] = [parseInt(d['2014']), parseInt(d['2015']), parseInt(d['2016']), parseInt(d['2017']), parseInt(d['2018']), parseInt(d['2019'])]
         });
 
     });
@@ -208,16 +208,16 @@ $(document).ready(function() {
                 d3.select(this).classed("country-on", true);
                 if (d.properties.iso_a3 in countryData) {
                     let cData = countryData[d.properties.iso_a3]
-                    showStat(d, cData,worldData,surveyData[d.properties.iso_a3]);
+                    showStat(d, cData, worldData, surveyData[d.properties.iso_a3]);
                 } else {
-                    showStat(d, null,worldData,surveyData[d.properties.iso_a3]);
+                    showStat(d, null, worldData, surveyData[d.properties.iso_a3]);
                 }
                 //add flow effect (comment for test)
                 flow.selectAll("line").remove();
                 circle.selectAll("circle").remove();
                 let iso = d.properties.iso_a3;
                 createFlow(iso, flows, direction);
-                appendFlowStat(d.properties.iso_a3, flows,countryData);
+                appendFlowStat(d.properties.iso_a3, flows, countryData);
             });
 
 
@@ -235,7 +235,11 @@ $(document).ready(function() {
                 return "countryLabel" + d.properties.iso_a3;
             })
             .attr("transform", function(d) {
-                if (d.properties.iso_a3 == "USA") {
+                if (d.properties.iso_a3 == "FRA") {
+                    return (
+                        "translate(" + (path.centroid(d)[0] + 50) + "," + (path.centroid(d)[1] - 50) + ")"
+                    );
+                } else if (d.properties.iso_a3 == "USA") {
                     return (
                         "translate(" + (path.centroid(d)[0] + 100) + "," + (path.centroid(d)[1] + 50) + ")"
                     );
@@ -259,9 +263,9 @@ $(document).ready(function() {
                 d3.select("#country" + d.properties.iso_a3).classed("country-on", true);
                 if (d.properties.iso_a3 in countryData) {
                     let cData = countryData[d.properties.iso_a3]
-                    showStat(d, cData,worldData,surveyData[d.properties.iso_a3]);
+                    showStat(d, cData, worldData, surveyData[d.properties.iso_a3]);
                 } else {
-                    showStat(d, null,worldData,surveyData[d.properties.iso_a3]);
+                    showStat(d, null, worldData, surveyData[d.properties.iso_a3]);
                 }
                 // //add flow effect
                 // flow.selectAll("line").remove();
@@ -295,7 +299,7 @@ $(document).ready(function() {
         initiateZoom();
     });
 
-    
+
 });
 
 
@@ -307,7 +311,7 @@ $(document).ready(function() {
 //     $(this).style("display", "none");
 // })
 
-$('.arrow').click(function(){
+$('.arrow').click(function() {
     console.log(111)
     $('html, body').animate({
         scrollTop: $("#map_block").offset().top
