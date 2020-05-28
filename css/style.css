@@ -135,7 +135,7 @@ nav li a:hover{
 }
 /* map block */
 #map_block{
-    position: relative;
+    position: absolute;
 }
 /*map part*/
 #map-holder {
@@ -490,7 +490,7 @@ svg rect {
     /* border:1px solid red; */
     left:1%
 }
-#emptyIcon{
+/* #emptyIcon{
     position: absolute;
     width:2vw;
     height:2vh;
@@ -503,7 +503,7 @@ svg rect {
     left: 29%;
     color: cornsilk;
     top: -1%;
-}
+} */
 #color-bar{
     position: absolute;
     width:2vw;
@@ -562,7 +562,11 @@ svg rect {
     top:3%
     /* margin-left:5vw; */
 }
-
+#bar_legend{
+    /* top:103%; */
+    font-family:cursive;
+    color:cornsilk;
+}
 
 /* Team info */
 #team_block ul {
