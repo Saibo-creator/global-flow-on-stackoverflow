@@ -135,13 +135,13 @@ nav li a:hover{
 }
 /* map block */
 #map_block{
-    
     position: relative;
 }
 /*map part*/
 #map-holder {
     width: 75vw;
-    height: 100vh;
+    height: 95vh;
+    margin-bottom:5vh;
     display:inline-block;
     /* background-color: #2A2C39; */
     background-color:rgba(42, 44, 57,1);
@@ -480,6 +480,88 @@ svg rect {
     color: #000;
 }
 
+/*color bar*/
+/*color bar*/
+#colorBar{
+    position: absolute;
+    top:65%;
+    height:35vh;
+    width: 10vw;
+    /* border:1px solid red; */
+    left:1%
+}
+#emptyIcon{
+    position: absolute;
+    width:2vw;
+    height:2vh;
+    background-color: rgba(33, 37, 41);
+    left:0;
+    top:0;
+}
+#emptyCountry{
+    position:absolute;
+    left: 29%;
+    color: cornsilk;
+    top: -1%;
+}
+#color-bar{
+    position: absolute;
+    width:2vw;
+    height:30vh;
+    background:linear-gradient(to top, #FFF2ED 0%, #5E010F 100%);
+    bottom:0;
+    /* left:30%; */
+    
+}
+.colorLabel{
+    position:absolute;
+    left:29%;
+    bottom: 0em;
+    /* border:1px solid red; */
+    padding-inline-start: 0px !important;
+    height:30vh;
+    
+}
+.colorLabel li{
+    display: inline-block;
+    color:cornsilk;
+    /* margin-left:5vw; */
+}
+.colorLabel li:nth-child(1){
+    position: absolute;
+    display: inline-block;
+    color:cornsilk;
+    top:100%;
+    /* margin-left:5vw; */
+}
+.colorLabel li:nth-child(2){
+    position: absolute;
+    display: inline-block;
+    color:cornsilk;
+    top:76%;
+    /* margin-left:5vw; */
+}
+.colorLabel li:nth-child(3){
+    position: absolute;
+    display: inline-block;
+    color:cornsilk;
+    top:51%;
+    /* margin-left:5vw; */
+}
+.colorLabel li:nth-child(4){
+    position: absolute;
+    display: inline-block;
+    color:cornsilk;
+    top:26%;
+    /* margin-left:5vw; */
+}
+.colorLabel li:nth-child(5){
+    position: absolute;
+    display: inline-block;
+    color:cornsilk;
+    top:3%
+    /* margin-left:5vw; */
+}
 
 
 /* Team info */
