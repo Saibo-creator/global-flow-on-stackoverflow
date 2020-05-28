@@ -99,18 +99,19 @@ nav li a:hover{
 .arrow{
     cursor: pointer;
     position: absolute;
-    bottom:2.5%;
-    left: 50%;
+    top:35%;
+    padding:0 0 !important;
+    right: 5%;
     transform: translate(-50%,-50%);
 }
 
 .arrow span{
-    display: block;
+    display: inline-block;
     width: 2em;
     height: 2em;
     border-bottom: 5px solid cornsilk;
     border-right: 5px solid cornsilk;
-    transform: rotate(45deg);
+    transform: rotate(-45deg);
     margin: -10px;
     animation: animate 2s infinite;
 }
@@ -120,19 +121,21 @@ nav li a:hover{
 .arrow span:nth-child(3){
     animation-delay: -0.4s;
 }
+
 @keyframes animate {
     0%{
         opacity: 0;
-        transform: rotate(45deg) translate(-20px,-20px);
+        transform: rotate(-45deg) translate(-20px,-20px);
     }
     50%{
         opacity: 1;
     }
     100%{
         opacity: 0;
-        transform: rotate(45deg) translate(20px,20px);
+        transform: rotate(-45deg) translate(20px,20px);
     }
 }
+
 /* map block */
 #map_block{
     position: absolute;

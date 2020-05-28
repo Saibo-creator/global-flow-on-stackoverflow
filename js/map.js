@@ -320,10 +320,3 @@ $(document).ready(function() {
 // $('.country').mouseout(function(){
 //     $(this).style("display", "none");
 // })
-
-$('.arrow').click(function() {
-    console.log(111)
-    $('html, body').animate({
-        scrollTop: $("#map_block").offset().top
-    }, 0.1);
-})
