@@ -327,20 +327,20 @@ svg rect {
 /*flow part*/
 
 .line {
-    stroke: pink;
-    stroke-width: 5;
+    stroke: #abcdef;
+    stroke-width: 6;
 
 }
 
 .circle {
-    color: #9966CC;
-    fill: #9966CC;
+    color: #6666ff;
+    fill: #6666ff;
 
 }
 
 #arrow {
-    color: #9966CC;
-    fill: #9966CC;
+    color: #6666ff;
+    fill: #6666ff;
 }
 
 .slidecontainer {
