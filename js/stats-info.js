@@ -147,7 +147,7 @@ function appendFlowStat(iso, flows,countryData,direction ) {
 
     } else   {
         $('#progress-bar-large').html('<p class="hbar-title">Flow Information</p>');
-        $('#progress-bar-large').append('<div id="progress-bar"></div>');
+        $('#progress-bar-large').append('<div id="progress-bar" style="margin-top:1.5em"></div>');
         if (direction == 'out') {
             $('#progress-bar').html(
                 `<div class="alert alert-primary" role="alert">Programmers in Chad have a relatively low activity rate, \
