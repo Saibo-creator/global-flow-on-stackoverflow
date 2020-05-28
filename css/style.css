@@ -85,9 +85,9 @@ nav li a:hover{
     /* margin-bottom: 1.5em; */
     font-family: cursive;
 }
-.ml1{
+/*.ml1{
     top:5vh;
-}
+}*/
 #abstract_block div{
     padding:0 8em;
 }
@@ -657,6 +657,8 @@ svg rect {
 .ml1 {
   font-weight: 900;
   font-size: 3.5em;
+  font-family: cursive;
+  color: rgba(42, 44, 57,1)
 }
 
 .ml1 .letter {
