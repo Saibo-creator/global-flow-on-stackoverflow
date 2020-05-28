@@ -153,15 +153,12 @@ function appendFlowStat(iso, flows,countryData,direction ) {
     } else   {
         $('#progress-bar-large').html('<p class="hbar-title">Flow Information</p>');
         $('#progress-bar-large').append('<div id="progress-bar" style="margin-top:1.5em"></div>');
-        if (direction == 'out') {
-            $('#progress-bar').html(
-                `<div class="alert alert-primary" role="alert">Programmers in the selected area have a relatively low activity rate, \
-                thus no evident Q&A exchange flow with other countries was detected. An assumption would be the developers come \
-                to Stack Overflow only to find answers to their questions, while not participate in the community by asking, \
-                answering, voting for, or commenting on questions.  Hopefully, we will see incremental improvement in this \
-                area year over year in terms of .</div>`);
-
-        }
+        $('#progress-bar').html(
+            `<div class="alert alert-primary" role="alert">Programmers in the selected area have a relatively low activity rate, \
+            thus no evident Q&A exchange flow with other countries was detected. An assumption would be the developers come \
+            to Stack Overflow only to find answers to their questions, while not participate in the community by asking, \
+            answering, voting for, or commenting on questions.  Hopefully, we will see incremental improvement in this \
+            area year over year in terms of .</div>`);
 
 
     }
