@@ -82,7 +82,7 @@ function createFlow(iso, flows, direction) {
                 d3.select("#countryLabel" + iso).attr('class','countryLabelOffmouseout')
 
                 d3.select("#country" + iso).on("mouseout",onFlowMouseOut(iso))
-                d3.select("#country" + iso).on("mouseover",onFlowMouseOut(iso))
+                d3.select("#country" + iso).on("mouseover",onFlowMouseOver(iso))
                 d3.select("#country" + iso).attr('class','countryOffmouseout')
                 d3.select("#countryLabel" + iso).style("display", "block");
             }
@@ -113,7 +113,7 @@ function createFlow(iso, flows, direction) {
                 d3.select("#countryLabel" + iso).attr('class','countryLabelOffmouseout')
                 
                 d3.select("#country" + iso).on("mouseout",onFlowMouseOut(iso))
-                d3.select("#country" + iso).on("mouseover",onFlowMouseOut(iso))
+                d3.select("#country" + iso).on("mouseover",onFlowMouseOver(iso))
                 d3.select("#country" + iso).attr('class','countryOffmouseout')
                 d3.select("#countryLabel" + iso).style("display", "block");
             }
