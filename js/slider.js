@@ -46,9 +46,23 @@ $('.range-labels li').on('click', function () {
   
 });
 
-let playing = false
+let playing = true
 let interval
 let progress = 0.0
+interval = setInterval(function(){
+    if (progress >= 5){
+        progress = 0
+        if (!islooping)
+            $('#play-btn').trigger('click')
+        return
+    }
+    progress += 0.05
+    countries.attr("style", function(d, i) {
+      return getCountryStyleString(surveyData, d, i, progress);
+  })
+    sheet.textContent = getTrackStyle(Math.floor(progress));
+    $rangeInput.val(Math.floor(progress))
+}, 150)
 $('#play-btn').on('click', function () {
     if (!playing){
         playing = true
@@ -60,13 +74,13 @@ $('#play-btn').on('click', function () {
                     $('#play-btn').trigger('click')
                 return
             }
-            progress += 0.1
+            progress += 0.05
             countries.attr("style", function(d, i) {
               return getCountryStyleString(surveyData, d, i, progress);
           })
             sheet.textContent = getTrackStyle(Math.floor(progress));
             $rangeInput.val(Math.floor(progress))
-        }, 100)
+        }, 150)
     }
     else {
         playing = false
@@ -75,7 +89,7 @@ $('#play-btn').on('click', function () {
     }
 })
 
-let islooping = false
+let islooping = true
 $('#loop-btn').on('click', function () {
     if (!islooping) {
         $(this).removeClass("loop-btn-inactive").addClass("loop-btn-active")
