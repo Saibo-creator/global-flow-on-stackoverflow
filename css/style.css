@@ -609,3 +609,11 @@ svg rect {
 .name{
     margin-top: 1em;
 }
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 25%;
+}
