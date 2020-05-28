@@ -103,8 +103,13 @@ function appendFlowStat(iso, flows,countryData,direction ) {
   if (direction == 'in') { flows = flows.filter(function(v) { return v.ques_owner_country == iso; }).slice(0, 20); } else if (direction == 'out') { flows = flows.filter(function(v) { return v.ans_owner_country == iso; }).slice(0, 20); }
 
     if (flows.length > 0) {
-
-        $('#progress-bar-large').html('<p class="hbar-title">Top5 flows</p><p>(porportion to the largest flow)</p>');
+        if (direction == 'in'){
+            $('#progress-bar-large').html('<p class="hbar-title">Top 5 knowledge export partners</p><p>(porportional to the largest flow)</p>');
+        }
+        else {
+            $('#progress-bar-large').html('<p class="hbar-title">Top 5 knowledge import partners</p><p>(porportional to the largest flow)</p>');
+        }
+        
         $('#progress-bar-large').append('<div id="progress-bar"></div>');
 
         largest_flow_count = flows[0].count;
@@ -112,21 +117,21 @@ function appendFlowStat(iso, flows,countryData,direction ) {
         flows.forEach(function(flow, i) {
             if (i <= 4) {
                 if (direction == 'in') {
-                    $('#progress-bar').append('<div style="margin-top:20px;margin-bottom: 0 px; "><i id="country-flow-flag-' + flow.ans_owner_country + '" ></i> ' + flow.ans_owner_country + ':&nbsp;&nbsp;' + flow.count + '</div>');
+                    $('#progress-bar').append('<div style="margin-top:20px;margin-bottom: 0 px; "><i id="country-flow-flag-' + flow.ans_owner_country + '" ></i> ' + flow.ans_owner_country + ':&nbsp;&nbsp;' + flow.count +  ' Answers</div>');
                     var country_name = countryData[flow.ans_owner_country].Country;
                     // console.log(country_name)
                     var classes = [(country_name.toLowerCase()), 'flag'];
                     $("#country-flow-flag-" + flow.ans_owner_country).addClass(classes.join(" "));
                 } else if (direction == 'out') {
 
-                    $('#progress-bar').append('<div style="margin-top:20px;margin-bottom: 0 px; "><i id="country-flow-flag-' + flow.ques_owner_country + '" ></i> ' + flow.ques_owner_country + ':&nbsp;&nbsp;' + flow.count + '</div>');
+                    $('#progress-bar').append('<div style="margin-top:20px;margin-bottom: 0 px; "><i id="country-flow-flag-' + flow.ques_owner_country + '" ></i> ' + flow.ques_owner_country + ':&nbsp;&nbsp;' + flow.count + ' Answers</div>');
                     var country_name = countryData[flow.ques_owner_country].Country;
                     // console.log(country_name)
                     var classes = [(country_name.toLowerCase()), 'flag'];
                     $("#country-flow-flag-" + flow.ques_owner_country).addClass(classes.join(" "));
                 }
 
-
+                
 
                 $('#progress-bar').append('<div class="progress progress-striped active">' +
                     '<div ' + 'id=' + i + ' role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:' + "0%;>" +
