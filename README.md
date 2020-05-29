@@ -1,5 +1,7 @@
 # global-flow-on-stackoverflow
+[process book](https://github.com/com-480-data-visualization/com-480-project-vizulixr/blob/master/COM480%20Process%20Book.pdf)
 
+[screencast]( https://www.youtube.com/watch?v=QTeRGCJxrwo&feature=youtu.be)
 ## Abstract
 
 In this site, we visualize the Question and Answer country origin from Stackoverflow as a map.
